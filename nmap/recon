@@ -1,0 +1,10 @@
+# Nmap 7.94 scan initiated Tue Jan  2 19:16:31 2024 as: nmap -sn -oN nmap/recon 192.168.1.1-254
+Nmap scan report for H1600V7.home (192.168.1.1)
+Host is up (0.0029s latency).
+Nmap scan report for 192.168.1.7 (192.168.1.7)
+Host is up (0.012s latency).
+Nmap scan report for 192.168.1.9 (192.168.1.9)
+Host is up (0.0066s latency).
+Nmap scan report for 192.168.1.11 (192.168.1.11)
+Host is up (0.000069s latency).
+# Nmap done at Tue Jan  2 19:16:46 2024 -- 254 IP addresses (4 hosts up) scanned in 15.00 seconds

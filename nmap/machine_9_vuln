@@ -1,0 +1,37 @@
+Starting Nmap 7.94 ( https://nmap.org ) at 2024-01-02 19:33 EET
+Nmap scan report for 192.168.1.9 (192.168.1.9)
+Host is up (0.010s latency).
+Not shown: 997 closed tcp ports (conn-refused)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.1.9
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.1.9:80/
+|     Form id: loginform
+|     Form action: http://192.168.1.9/index.php/login
+|     
+|     Path: http://192.168.1.9:80/index.php/login/restorePassword
+|     Form id: restorepassword
+|_    Form action: /index.php/login/restorePassword
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-enum: 
+|   /backups/: Backup folder w/ directory listing
+|   /robots.txt: Robots file
+|   /batch/: Potentially interesting directory w/ listing on 'apache/2.4.48 (debian)'
+|   /core/: Potentially interesting directory w/ listing on 'apache/2.4.48 (debian)'
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.48 (debian)'
+|   /images/: Potentially interesting directory w/ listing on 'apache/2.4.48 (debian)'
+|   /install/: Potentially interesting folder
+|   /js/: Potentially interesting directory w/ listing on 'apache/2.4.48 (debian)'
+|   /manual/: Potentially interesting folder
+|   /template/: Potentially interesting directory w/ listing on 'apache/2.4.48 (debian)'
+|_  /uploads/: Potentially interesting directory w/ listing on 'apache/2.4.48 (debian)'
+3306/tcp open  mysql
+|_mysql-vuln-cve2012-2122: ERROR: Script execution failed (use -d to debug)
+
+Nmap done: 1 IP address (1 host up) scanned in 33.79 seconds
+

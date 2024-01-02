@@ -1,0 +1,79 @@
+Script started on 2024-01-02 23:50:28+02:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="86" LINES="35"]
+]0;export NVM_DIR="$HOME/.nvm" - Parrot Terminal]0;[ -s "$NVM_DIR/nvm.sh" ] - Parrot Terminal]0;\. "$NVM_DIR/nvm.sh" - Parrot Terminal]0;[ -s "$NVM_DIR/bash_completion" ] - Parrot Terminal]0;\. "$NVM_DIR/bash_completion" - Parrot Terminal]0;[ -x /usr/bin/dircolors ] - Parrot Terminal]0;test -r ~/.dircolors - Parrot Terminal]0;eval "$(dircolors -b)" - Parrot Terminal]0;LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:' - Parrot Terminal]0;export LS_COLORS - Parrot Terminal]0;alias ls='ls --color=auto -v' - Parrot Terminal]0;alias dir='dir --color=auto' - Parrot Terminal]0;alias vdir='vdir --color=auto' - Parrot Terminal]0;alias grep='grep --color=auto' - Parrot Terminal]0;alias fgrep='fgrep --color=auto' - Parrot Terminal]0;alias egrep='egrep --color=auto' - Parrot Terminal]0;alias ll='ls -lh ' - Parrot Terminal]0;alias la='ls -lha' - Parrot Terminal]0;alias l='ls -CF' - Parrot Terminal]0;alias em='emacs -nw' - Parrot Terminal]0;alias _='sudo' - Parrot Terminal]0;alias _i='sudo -i' - Parrot Terminal]0;export OBSIDIANVAULT=/home/figaro/Documents/Obsidian\ Vault/ - Parrot Terminal]0;[ -f ~/.bash_aliases ] - Parrot Terminal]0;. ~/.bash_aliases - Parrot Terminal]0;[ -f ~/.bash_profile ] - Parrot Terminal]0;. ~/.bash_profile - Parrot Terminal]0;export GPROJ=/home/figaro/Programms/Github_Projects/NikolasProjects - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;shopt -oq posix - Parrot Terminal]0;[ -f /usr/share/bash-completion/bash_completion ] - Parrot Terminal]0;. /usr/share/bash-completion/bash_completion - Parrot Terminal[?2004h[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1[0;31m]
+[0;31m└──╼ [0m[01;33m$[0m[H[2J[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mssh travis@$ipt[C[C[C[C[C[C[3Pgall update [C[C[C[C[C[Cssh travis@$ipt
+[?2004l]0;ssh travis@$ipt - Parrot Terminaltravis@192.168.1.9's password: 
+Linux debian 5.10.0-8-amd64 #1 SMP Debian 5.10.46-5 (2021-09-23) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Tue Jan  2 16:50:13 2024 from 192.168.1.11
+[?2004h]0;travis@debian: ~[01;32mtravis@debian[00m:[01;34m~[00m$ [H[2J]0;travis@debian: ~[01;32mtravis@debian[00m:[01;34m~[00m$ ls
+[?2004l[0m[01;32muser.txt[0m
+[?2004h]0;travis@debian: ~[01;32mtravis@debian[00m:[01;34m~[00m$ cat user.txt 
+[?2004lICA{Secret_Project}
+[?2004h]0;travis@debian: ~[01;32mtravis@debian[00m:[01;34m~[00m$ [H[2J]0;travis@debian: ~[01;32mtravis@debian[00m:[01;34m~[00m$ ls
+[?2004l[0m[01;32muser.txt[0m
+[?2004h]0;travis@debian: ~[01;32mtravis@debian[00m:[01;34m~[00m$ [H[2J]0;travis@debian: ~[01;32mtravis@debian[00m:[01;34m~[00m$ ls
+[?2004l[0m[01;32muser.txt[0m
+[?2004h]0;travis@debian: ~[01;32mtravis@debian[00m:[01;34m~[00m$ cd .. 
+[?2004l[?2004h]0;travis@debian: /home[01;32mtravis@debian[00m:[01;34m/home[00m$ ls
+[?2004l[0m[01;34mdexter[0m  [01;34mtravis[0m
+[?2004h]0;travis@debian: /home[01;32mtravis@debian[00m:[01;34m/home[00m$ sudo dexter/
+[?2004l
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+[sudo] password for travis: 
+travis is not in the sudoers file.  This incident will be reported.
+[?2004h]0;travis@debian: /home[01;32mtravis@debian[00m:[01;34m/home[00m$ cd dexter/
+[?2004l-bash: cd: dexter/: Permission denied
+[?2004h]0;travis@debian: /home[01;32mtravis@debian[00m:[01;34m/home[00m$ ls
+[?2004l[0m[01;34mdexter[0m  [01;34mtravis[0m
+[?2004h]0;travis@debian: /home[01;32mtravis@debian[00m:[01;34m/home[00m$ sudo cd dce[K[Kecx[K[Kxter/
+[?2004l[sudo] password for travis: 
+travis is not in the sudoers file.  This incident will be reported.
+[?2004h]0;travis@debian: /home[01;32mtravis@debian[00m:[01;34m/home[00m$ hostname -( [K[K)[KO[KI 
+[?2004l192.168.1.9 2a02:587:940d:3400:a00:27ff:feae:9a34 
+[?2004h]0;travis@debian: /home[01;32mtravis@debian[00m:[01;34m/home[00m$ la
+[?2004l-bash: la: command not found
+[?2004h]0;travis@debian: /home[01;32mtravis@debian[00m:[01;34m/home[00m$ ls -la 
+[?2004ltotal 16
+drwxr-xr-x  4 root   root   4096 Sep 25  2021 [0m[01;34m.[0m
+drwxr-xr-x 18 root   root   4096 Sep 25  2021 [01;34m..[0m
+drwxrwx---  3 dexter dexter 4096 Sep 25  2021 [01;34mdexter[0m
+drwxrwx---  3 travis travis 4096 Sep 25  2021 [01;34mtravis[0m
+[?2004h]0;travis@debian: /home[01;32mtravis@debian[00m:[01;34m/home[00m$ cd travis/
+[?2004l[?2004h]0;travis@debian: /home/travis[01;32mtravis@debian[00m:[01;34m/home/travis[00m$ la
+[?2004l-bash: la: command not found
+[?2004h]0;travis@debian: /home/travis[01;32mtravis@debian[00m:[01;34m/home/travis[00m$ sl[K[Ks[Kls -a [K[Kla 
+[?2004ltotal 40
+drwxrwx--- 3 travis travis 4096 Sep 25  2021 [0m[01;34m.[0m
+drwxr-xr-x 4 root   root   4096 Sep 25  2021 [01;34m..[0m
+-rwxrwx--- 1 travis travis   22 Jan  2 16:50 [01;32m.bash_history[0m
+-rwxrwx--- 1 travis travis  220 Aug  4  2021 [01;32m.bash_logout[0m
+-rwxrwx--- 1 travis travis 3526 Aug  4  2021 [01;32m.bashrc[0m
+drwxrwx--- 3 travis travis 4096 Sep 25  2021 [01;34m.local[0m
+-rw------- 1 travis travis   53 Sep 25  2021 .mysql_history
+-rwxrwx--- 1 travis travis  807 Aug  4  2021 [01;32m.profile[0m
+-rw-r--r-- 1 travis travis  179 Sep 25  2021 .wget-hsts
+-rwxrwx--- 1 travis travis   20 Sep 25  2021 [01;32muser.txt[0m
+[?2004h]0;travis@debian: /home/travis[01;32mtravis@debian[00m:[01;34m/home/travis[00m$ sudo -l [7mDJceVy98W28Y7wLg[27m[1PDJceVy98W28Y7wL[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K-l 
+[?2004l[sudo] password for travis: 
+Sorry, user travis may not run sudo on debian.
+[?2004h]0;travis@debian: /home/travis[01;32mtravis@debian[00m:[01;34m/home/travis[00m$ [?2004l
+logout
+Connection to 192.168.1.9 closed.
+[?2004h[0;31m┌─[[0;31m✗[0;37m]─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mexit
+[?2004l]0;exit - Parrot Terminalexit
+
+Script done on 2024-01-03 00:06:10+02:00 [COMMAND_EXIT_CODE="1"]
