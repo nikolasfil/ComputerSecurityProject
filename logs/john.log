@@ -1,0 +1,75 @@
+Script started on 2024-01-03 02:43:08+02:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="86" LINES="35"]
+]0;export NVM_DIR="$HOME/.nvm" - Parrot Terminal]0;[ -s "$NVM_DIR/nvm.sh" ] - Parrot Terminal]0;\. "$NVM_DIR/nvm.sh" - Parrot Terminal]0;[ -s "$NVM_DIR/bash_completion" ] - Parrot Terminal]0;\. "$NVM_DIR/bash_completion" - Parrot Terminal]0;[ -x /usr/bin/dircolors ] - Parrot Terminal]0;test -r ~/.dircolors - Parrot Terminal]0;eval "$(dircolors -b)" - Parrot Terminal]0;LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:' - Parrot Terminal]0;export LS_COLORS - Parrot Terminal]0;alias ls='ls --color=auto -v' - Parrot Terminal]0;alias dir='dir --color=auto' - Parrot Terminal]0;alias vdir='vdir --color=auto' - Parrot Terminal]0;alias grep='grep --color=auto' - Parrot Terminal]0;alias fgrep='fgrep --color=auto' - Parrot Terminal]0;alias egrep='egrep --color=auto' - Parrot Terminal]0;alias ll='ls -lh ' - Parrot Terminal]0;alias la='ls -lha' - Parrot Terminal]0;alias l='ls -CF' - Parrot Terminal]0;alias em='emacs -nw' - Parrot Terminal]0;alias _='sudo' - Parrot Terminal]0;alias _i='sudo -i' - Parrot Terminal]0;export OBSIDIANVAULT=/home/figaro/Documents/Obsidian\ Vault/ - Parrot Terminal]0;[ -f ~/.bash_aliases ] - Parrot Terminal]0;. ~/.bash_aliases - Parrot Terminal]0;[ -f ~/.bash_profile ] - Parrot Terminal]0;. ~/.bash_profile - Parrot Terminal]0;export GPROJ=/home/figaro/Programms/Github_Projects/NikolasProjects - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;for f in /home/figaro/Programms/Bash/utilities/* - Parrot Terminal]0;source $f - Parrot Terminal]0;shopt -oq posix - Parrot Terminal]0;[ -f /usr/share/bash-completion/bash_completion ] - Parrot Terminal]0;. /usr/share/bash-completion/bash_completion - Parrot Terminal[?2004h[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1/files[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mjohn[K[K[K[Kzip2h[Kjohn encc[Krypted.zip > encrypted.zip.hash
+[?2004l]0;zip2john encrypted.zip > encrypted.zip.hash - Parrot Terminalver 1.0 efh 5455 efh 7875 encrypted.zip/../script.sh PKZIP Encr: 2b chk, TS_chk, cmplen=48, decmplen=36, crc=3014D7B9 ts=9C30 cs=9c30 type=0
+[?2004h[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1/files[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mho[K[Kjohn hash[K[K[K[Kencrypt[0;31m└──╼ [0m[01;33m$[0mjohn encrypted.zip.hash a 
+[?2004l]0;john encrypted.zip.hash - Parrot TerminalUsing default input encoding: UTF-8
+Loaded 1 password hash (PKZIP [32/64])
+Will run 8 OpenMP threads
+Proceeding with single, rules:Single
+Press 'q' or Ctrl-C to abort, almost any other key for status
+Almost done: Processing the remaining buffered candidate passwords, if any.
+Proceeding with wordlist:/usr/share/john/password.lst
+Proceeding with incremental:ASCII
+Wait...0g 0:00:01:31  3/3 0g/s 14146Kp/s 14146Kc/s 14146KC/s y3k8x5..y3z0dp
+Session aborted
+[?2004h[0;31m┌─[[0;31m✗[0;37m]─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1/files[0;31m]
+[0;31m└──╼ [0m[01;33m$[0m[K; [H[2J[0;31m┌─[[0;31m✗[0;37m]─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1/files[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mfcrackzip 
+decoded_files/      encrypted.zip       passwords.txt       
+encoded_files/      encrypted.zip.hash  users.txt           
+[0;31m┌─[[0;31m✗[0;37m]─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1/files[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mfcrackzip --help
+[?2004l]0;fcrackzip --help - Parrot Terminal
+fcrackzip version 1.0, a fast/free zip password cracker
+written by Marc Lehmann <pcg@goof.com> You can find more info on
+http://www.goof.com/pcg/marc/
+
+USAGE: fcrackzip
+          [-b|--brute-force]            use brute force algorithm
+          [-D|--dictionary]             use a dictionary
+          [-B|--benchmark]              execute a small benchmark
+          [-c|--charset characterset]   use characters from charset
+          [-h|--help]                   show this message
+          [--version]                   show the version of this program
+          [-V|--validate]               sanity-check the algorithm
+          [-v|--verbose]                be more verbose
+          [-p|--init-password string]   use string as initial password/file
+          [-l|--length min-max]         check password with length min to max
+          [-u|--use-unzip]              use unzip to weed out wrong passwords
+          [-m|--method num]             use method number "num" (see below)
+          [-2|--modulo r/m]             only calculcate 1/m of the password
+          file...                    the zipfiles to crack
+
+methods compiled in (* = default):
+
+ 0: cpmask
+ 1: zip1
+*2: zip2, USE_MULT_TAB
+
+[?2004h[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1/files[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mfcrackzip --help     D /s usr/share/roc  ock    
+Display all 620 possibilities? (y or n)
+[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1/files[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mfcrackzip -D /usr/share/wordlists/d 
+brutespray/     dnsmap.txt      john.lst        rockyou.txt     sqlmap.txt
+dirb/           fasttrack.txt   metasploit/     rockyou.txt.gz  wfuzz/
+dirbuster/      fern-wifi/      nmap.lst        seclists/       wifite.txt
+[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1/files[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mfcrackzip -D /usr/share/wordlists/rockyou.txt encc rypted.zip
+[?2004l]0;fcrackzip -D /usr/share/wordlists/rockyou.txt encrypted.zip - Parrot Terminalfound id 34333231, '/usr/share/wordlists/rockyou.txt' is not a zipfile ver 2.xx, skipping
+aaaaaa: No such file or directory
+[?2004h[0;31m┌─[[0;31m✗[0;37m]─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1/files[0;31m]
+[0;31m└──╼ [0m[01;33m$[0m[Kfcrackzip -D /usr/share/wordlists/rockyou.txt encrypted.zip[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P
+[?2004l]0;fcrackzip -D encrypted.zip - Parrot Terminalaaaaaa: No such file or directory
+[?2004h[0;31m┌─[[0;31m✗[0;37m]─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1/files[0;31m]
+[0;31m└──╼ [0m[01;33m$[0m[Kfcrackzip -D  encrypted.zip                             [H[2J[0;31m┌─[[0;31m✗[0;37m]─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1/files[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mls
+[?2004l]0;ls --color=auto -v - Parrot Terminal[0m[01;34mdecoded_files[0m  [01;31mencrypted.zip[0m       passwords.txt
+[01;34mencoded_files[0m  encrypted.zip.hash  users.txt
+[?2004h[0;31m┌─[[0;39mfigaro[01;33m@[01;96moracle[0;31m]─[[0;32m~/Hacking/Vulnhub/ICA_1/files[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mexit
+[?2004l]0;exit - Parrot Terminalexit
+
+Script done on 2024-01-03 03:01:02+02:00 [COMMAND_EXIT_CODE="0"]
