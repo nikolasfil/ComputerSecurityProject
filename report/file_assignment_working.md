@@ -761,7 +761,7 @@ hydra -L files/users.txt -P files/passwords.txt ssh://$ipt
 ````
 
 `````
-W
+
 
 
 <font color="#646a73">Output:</font>
@@ -1155,6 +1155,13 @@ root@debian:~#
 
 ## Root user access 
 
+%% 
+password 
+```
+root
+```
+%%
+
 ```bash
 root@debian:/root# ls
 ```
@@ -1225,6 +1232,27 @@ Proceeding with incremental:ASCII
 
 
 ```
+
+
+%% 
+Reference to : 
+
+```
+/home/figaro/CTF/myCTF/Forensics/Steganography/Challenges_Ieee/Solutions
+```
+
+```
+we use fcrackzip -u -D -p custom-list.txt word-list.zip
+
+the password found is NOEISWEAK
+
+then we find there is a pin_brute_force.zip
+
+we use fcrackzip -u -b -c 1 --length 7 pin_brute_force.zip
+
+```
+
+%%
 
 
 ----
