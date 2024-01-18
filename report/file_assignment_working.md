@@ -1,5 +1,5 @@
 ---
-date: 2024-01-12
+date: 2024-01-20
 last_modified: 2024-01-02 18:39
 subject: ComputerSecurity
 type: assignment
@@ -31,7 +31,7 @@ title: Υλοποίηση Επίθεσης σε Υπολογιστικό Σύσ�
 | `=this.coauthor` | `=this.coAM` | 
 | `=this.author`   | `=this.AM`   |
 
-Ημερομηνία: `=this.date`
+%% Ημερομηνία: `=this.date` %%
 
 <br>
 <br>
@@ -629,6 +629,11 @@ cat files/smith_password.b64 | base64 -d
 X7MQkP3W29fewHdC
 ```
 
+---
+<div style="page-break-after: always;"></div>
+
+---
+
 Γραφουμε ενα script για να αποθηκευσει τα αρχεια μας, κυριως για την δικη μας διευκολυνση  : 
 
 ```python
@@ -838,6 +843,12 @@ Sorry, user travis may not run sudo on debian.
 
 
 Οποτε θα κοιταξουμε αν ο χρηστης dexter εχει περισσοτερα δικαιωματα στον server. 
+
+---
+<div style="page-break-after: always;"></div>
+
+---
+
 
 ### Connecting with ssh as dexter
 
@@ -1137,6 +1148,7 @@ export PATH=/tmp:$PATH
 cd /root/
 ```
 
+<font color="#646a73">Output:</font>
 ```
 -bash: cd: /root/: Permission denied
 ```
@@ -1152,6 +1164,10 @@ root@debian:~#
 
 Ετσι πλεον εχουμε αποκτησει super user access στον υπολογιστη.
 
+---
+<div style="page-break-after: always;"></div>
+
+---
 
 ## Root user access 
 
@@ -1162,19 +1178,24 @@ root
 ```
 %%
 
+<font color="#646a73">Command:</font>
 ```bash
 root@debian:/root# ls
 ```
 
+<font color="#646a73">Output:</font>
 ```
 encrypted.zip  root.txt  system.info
 ```
 
 
+
+<font color="#646a73">Command:</font>
 ```bash
 strings root.txt 
 ```
 
+<font color="#646a73">Output:</font>
 ```
 Super Secret Project Information is leaked!!!
 ```
@@ -1184,13 +1205,15 @@ Super Secret Project Information is leaked!!!
 
 Βλεπουμε 
 
+<font color="#646a73">Command:</font>
 ```bash
 unzip encrypted.zip 
 ```
 
+<font color="#646a73">Output:</font>
 ```
 Archive:  encrypted.zip
-[encrypted.zip] ../script.sh password: 
+[encrypted.zip] super_secret.txt password:
 ```
 
 Κατεβαζουμε το encrypted.zip αρχειο. 
@@ -1203,23 +1226,80 @@ Archive:  encrypted.zip
 
 # Password Cracking Zip 
 
+%%
+Creating the zip file : 
+
+```bash
+zip zip_tech-racoon-1337.zip super_secret.txt -e
+```
+
+
+```bash
+john zip_techracoon1337.zip.hash 
+```
+
+```bash
+Using default input encoding: UTF-8
+Loaded 1 password hash (PKZIP [32/64])
+Will run 8 OpenMP threads
+Proceeding with single, rules:Single
+Press 'q' or Ctrl-C to abort, almost any other key for status
+techracoon1337   (encrypted.zip/super_secret.txt)     
+1g 0:00:00:00 DONE 1/3 (2024-01-18 21:48) 100.0g/s 2400p/s 2400c/s 2400C/s zipsuper..techracoon1337encrypted.zip/super_secret.txt
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed. 
+```
+
+%%
 
 
 Για να σπασουμε τον κωδικο του zip θα αξιοποιησουμε το προγραμμα john the ripper 
+
+Το πρόγραμμα John The Ripper ειναι ενα open source password cracking tool, το οποιο εστιάζει στο σπάσιμο των password hashes. Για να σπασουμε ενα password protected zip αρχειο, χρησιμοποιουμε την εντολη zip2john για να δημιουργησουμε ενα hash απο το encrypted.zip αρχειο  
 
 ```bash
 zip2john encrypted.zip > encrypted.zip.hash
 ```
 
-```bash1
-ver 1.0 efh 5455 efh 7875 encrypted.zip/../script.sh PKZIP Encr: 2b chk, TS_chk, cmplen=48, decmplen=36, crc=3014D7B9 ts=9C30 cs=9c30 type=0
+```bash
+ver 2.0 efh 5455 efh 7875 encrypted.zip/super_secret.txt PKZIP Encr: TS_chk, cmplen=75, decmplen=66, crc=314B6EBB ts=ACC8 cs=acc8 type=8
 ```
 
 
 ```bash
+cat encrypted.zip.hash
+```
+
+
+```bash
+encrypted.zip/super_secret.txt:$pkzip$1*1*2*0*4b*42*314b6ebb*0*4a*8*4b*acc8*36941e5a11e0958d6e84afd109d91ded9564d065695ffdd51651745f9b041118a7b72913586688cd19a92af0eb716cd82871c04249e8b42144d32188e1f99692dd0876ca01af46974097bd*$/pkzip$:super_secret.txt:encrypted.zip::encrypted.zip
+```
+
+Απο το σημειο `$pkzip και μετα ακολουθει το hash του encrypted password. μεχρι το /pkzip}$` 
+
+
+
+<font color="#646a73">Command:</font>
+```bash
 john encrypted.zip.hash  
 ```
 
+<font color="#646a73">Output:</font>
+```bash
+Using default input encoding: UTF-8
+Loaded 1 password hash (PKZIP [32/64])
+Will run 8 OpenMP threads
+Proceeding with single, rules:Single
+Press 'q' or Ctrl-C to abort, almost any other key for status
+techracoon1337   (encrypted.zip/super_secret.txt)     
+1g 0:00:00:00 DONE 1/3 (2024-01-18 21:48) 100.0g/s 2400p/s 2400c/s 2400C/s zipsuper..techracoon1337encrypted.zip/super_secret.txt
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed.
+
+```
+
+
+%% 
 ```
 Using default input encoding: UTF-8
 Loaded 1 password hash (PKZIP [32/64])
@@ -1228,31 +1308,36 @@ Proceeding with single, rules:Single
 Press 'q' or Ctrl-C to abort, almost any other key for status
 Almost done: Processing the remaining buffered candidate passwords, if any.
 Proceeding with wordlist:/usr/share/john/password.lst
-Proceeding with incremental:ASCII
-
-
+racoon           (test.zip/super_secret.txt)     
+1g 0:00:00:00 DONE 2/3 (2024-01-18 22:11) 33.33g/s 2444Kp/s 2444Kc/s 2444KC/s 123456..faithfaith
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed. 
 ```
+%%
+
+Οπότε βρίσκουμε το κωδικό οτι ειναι techracoon1337 και ξεκλειδωνουμε το encrypted.zip 
+
+Μέσα εχει το αρχείο super_secret.txt : 
+
+<font color="#646a73">Command:</font>
+```bash
+cat super_secret.txt 
+```
+
+<font color="#646a73">Output:</font>
+```
+This is the outmost secret our company is hiding, be wary of it 
+```
+
+
 
 
 %% 
 Reference to : 
 
-```
-/home/figaro/CTF/myCTF/Forensics/Steganography/Challenges_Ieee/Solutions
-```
+[john the ripper source](https://www.youtube.com/watch?v=XjVYl1Ts6XI)
+ %%
 
-```
-we use fcrackzip -u -D -p custom-list.txt word-list.zip
-
-the password found is NOEISWEAK
-
-then we find there is a pin_brute_force.zip
-
-we use fcrackzip -u -b -c 1 --length 7 pin_brute_force.zip
-
-```
-
-%%
 
 
 ----
@@ -1278,7 +1363,6 @@ we use fcrackzip -u -b -c 1 --length 7 pin_brute_force.zip
 - [ip](https://www.howtogeek.com/657911/how-to-use-the-ip-command-on-linux/)
 - [curl](https://curl.se/docs/manpage.html)
 - [find](https://www.howtogeek.com/771399/how-to-use-the-find-command-in-linux/)
-- 
 
 
 ```
@@ -1295,4 +1379,5 @@ we use fcrackzip -u -b -c 1 --length 7 pin_brute_force.zip
 
 ````
 
-[Table Of Contents](UNI/Semester-9/ComputerSecurity/assignments/assignment-working.md#Table%20Of%20Contents)
+----
+%% [Table Of Contents](UNI/Semester-9/ComputerSecurity/assignments/assignment-working.md#Table%20Of%20Contents) %%
