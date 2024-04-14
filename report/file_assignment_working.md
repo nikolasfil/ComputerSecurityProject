@@ -6,7 +6,7 @@ class: "Ασφάλεια Υπολογιστών και Δικτύων"
 year: "2023-2024"
 type: assignment
 due: 2024-01-27
-completed: false
+completed: true
 author: Νικόλας Φιλιππάτος
 coauthor: Λέανδρος Αρβανιτόπουλος
 AM: 1072754
@@ -1438,4 +1438,4 @@ Reference to :
 ````
 
 ----
-%% [Table Of Contents](UNI/Semester-9/ComputerSecurity/assignments/assignment-working.md#Table%20Of%20Contents)  %%
+%% [Table Of Contents](UNI/Semester-9/ComputerSecurity/assignments/assignment-report.md#Table%20Of%20Contents)  %%
